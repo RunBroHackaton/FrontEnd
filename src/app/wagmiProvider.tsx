@@ -4,6 +4,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 import {
   getDefaultConfig,
   RainbowKitProvider,
+  darkTheme
 } from '@rainbow-me/rainbowkit';
 import {
   mainnet,
@@ -34,7 +35,7 @@ export default function Providers({
 return (
         <WagmiProvider config={config}>
             <QueryClientProvider client={queryClient}>
-              <RainbowKitProvider>
+              <RainbowKitProvider theme={darkTheme({accentColor: "rgb(50, 255, 150)"})}>
                 {children}
               </RainbowKitProvider>
             </QueryClientProvider>

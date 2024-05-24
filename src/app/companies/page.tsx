@@ -1,17 +1,16 @@
 "use client"
-import { useState } from "react"
-
 export default function Companies() {
-    const [Name, setName] = useState("")
-    const [Location, setLocation] = useState("")
-    const [KYC, setKYC] = useState("")
+
+    const handleSubmit = () => {
+
+    }
 
     return (
-        <form className="flex-1 flex justify-center items-center flex-col" onSubmit={() => {}}>
+        <form className="flex-1 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
             <p>Enter your company Details</p>
-            <input placeholder="Name" className="companyDetails"></input>
-            <input placeholder="Location" className="companyDetails"></input>
-            <input placeholder="KYC" className="companyDetails"></input>
+            <input name="Name" placeholder="Name" className="companyDetails" required></input>
+            <input name="Location" placeholder="Location" className="companyDetails" required></input>
+            <input name="KYC" placeholder="KYC" className="companyDetails" required></input>
             <input type="submit" value={"SUBMIT"} className="py-2 px-4 bg-red-500 rounded-2xl mt-10 cursor-pointer"/>
         </form>
     )

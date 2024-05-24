@@ -6,7 +6,7 @@ export default async function Marketplace() {
     const session = await getServerSession();
 
     if (!session || !session.user) {
-      redirect("/");
+        redirect("/")
     }
     
     return (
