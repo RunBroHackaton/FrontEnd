@@ -29,3 +29,21 @@ body {
   outline: none;
   border: 2px solid #f44336;
 }
+
+.actionButton {
+  margin-top: 10px;
+  height: 50px;
+  width: 250px;
+  background-color: #f44336;
+  border-radius: 20px;
+  transition: all 300ms ease-out;
+}
+
+.actionButton:hover {
+  background-color: #f4433699;
+  transform: scale(1.03);
+}
+
+.actionButton:active {
+  transform: translateY(5px);
+}

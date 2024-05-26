@@ -1,8 +1,8 @@
 "use client"
 
 import '@rainbow-me/rainbowkit/styles.css';
+import { createConfig, http } from 'wagmi';
 import {
-  getDefaultConfig,
   RainbowKitProvider,
   darkTheme
 } from '@rainbow-me/rainbowkit';
@@ -16,17 +16,40 @@ import {
 } from 'wagmi/chains';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { WagmiProvider } from "wagmi"
+import { coinbaseWallet } from '@rainbow-me/rainbowkit/wallets';
+import { walletConnectWallet } from '@rainbow-me/rainbowkit/wallets';
+import { injectedWallet } from '@rainbow-me/rainbowkit/wallets';
+import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets';
+import { rainbowWallet } from '@rainbow-me/rainbowkit/wallets';
+import { trustWallet } from '@rainbow-me/rainbowkit/wallets';
+import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 
 export default function Providers({
     children,
   }: Readonly<{
     children: React.ReactNode;
   }>) {
-    const config = getDefaultConfig({
-      appName: 'Run Bro!',
-      projectId: 'v1',
-      chains: [mainnet, polygon, optimism, arbitrum, base, sepolia],
-      ssr: true, // If your dApp uses server side rendering (SSR)
+
+    const connectors = connectorsForWallets(
+      [
+        {
+          groupName: 'Recommended',
+          wallets: [rainbowWallet, walletConnectWallet, coinbaseWallet, injectedWallet, metaMaskWallet, trustWallet ],
+        },
+      ],
+      {
+        appName: 'RunBro',
+        projectId: '1',
+      }
+    );
+
+    const config = createConfig({
+      connectors,
+      chains: [mainnet, sepolia], 
+      transports: {
+        [mainnet.id]: http('https://mainnet.example.com'),
+        [sepolia.id]: http('https://sepolia.example.com'),
+      },
     });
     
 
