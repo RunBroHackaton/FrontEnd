@@ -1,8 +1,12 @@
 "use client"
+import { useRouter } from 'next/navigation'
+
 export default function Companies() {
 
-    const handleSubmit = () => {
+    const router = useRouter()
 
+    const handleSubmit = () => {
+        router.push('/companies/list')
     }
 
     return (

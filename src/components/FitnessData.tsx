@@ -90,7 +90,7 @@ export default function FitnessData() {
             <div className="flex flex-col items-center">
                 <div className="flex flex-row">
                     <p>No. of steps</p>
-                    {stepsData ? (<p>{stepsData[stepsData.length - 1].steps}</p>) : (<></>)}
+                    {stepsData.length ? (<p>{stepsData[stepsData.length - 1].steps}</p>) : (<></>)}
                 </div>
                 <div className="flex flex-row">
                     <p>Distance Covered</p>

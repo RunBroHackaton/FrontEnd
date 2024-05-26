@@ -17,8 +17,6 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { WagmiProvider } from "wagmi"
 import { coinbaseWallet } from '@rainbow-me/rainbowkit/wallets';
-import { walletConnectWallet } from '@rainbow-me/rainbowkit/wallets';
-import { injectedWallet } from '@rainbow-me/rainbowkit/wallets';
 import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets';
 import { rainbowWallet } from '@rainbow-me/rainbowkit/wallets';
 import { trustWallet } from '@rainbow-me/rainbowkit/wallets';
@@ -34,12 +32,12 @@ export default function Providers({
       [
         {
           groupName: 'Recommended',
-          wallets: [rainbowWallet, walletConnectWallet, coinbaseWallet, injectedWallet, metaMaskWallet, trustWallet ],
+          wallets: [rainbowWallet, coinbaseWallet, metaMaskWallet, trustWallet ],
         },
       ],
       {
         appName: 'RunBro',
-        projectId: '1',
+        projectId: '2ba9dd02bf6fec560f472052988290b7',
       }
     );
 

@@ -37,6 +37,7 @@ body {
   background-color: #f44336;
   border-radius: 20px;
   transition: all 300ms ease-out;
+  color: white;
 }
 
 .actionButton:hover {
