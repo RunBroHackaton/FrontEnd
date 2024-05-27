@@ -4,7 +4,8 @@ import '@rainbow-me/rainbowkit/styles.css';
 import { createConfig, http } from 'wagmi';
 import {
   RainbowKitProvider,
-  darkTheme
+  darkTheme,
+  Theme
 } from '@rainbow-me/rainbowkit';
 import {
   mainnet,
@@ -53,10 +54,18 @@ export default function Providers({
 
     const queryClient = new QueryClient()
 
+    // const myCustomTheme: Theme = {
+    //   colors: {
+    //     accentColor: '#22c55e',
+    //     connectButtonText: "#FFFFFF"
+    //   }
+    // }
+    
+
 return (
         <WagmiProvider config={config}>
             <QueryClientProvider client={queryClient}>
-              <RainbowKitProvider theme={darkTheme({accentColor: "rgb(50, 255, 150)"})}>
+              <RainbowKitProvider theme={darkTheme({ accentColor: '#22c55e', accentColorForeground: 'black', borderRadius: 'large', fontStack: "rounded", overlayBlur: 'small'})}>
                 {children}
               </RainbowKitProvider>
             </QueryClientProvider>

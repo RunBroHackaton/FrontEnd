@@ -1,4 +1,5 @@
 "use client"
+import PrettyInput from '@/ui/PrettyInput'
 import { useRouter } from 'next/navigation'
 
 export default function Companies() {
@@ -10,11 +11,11 @@ export default function Companies() {
     }
 
     return (
-        <form className="flex-1 flex justify-center items-center flex-col" onSubmit={handleSubmit}>
+        <form className="flex-1 flex justify-center items-center flex-col space-y-8" onSubmit={handleSubmit}>
             <p>Enter your company Details</p>
-            <input name="Name" placeholder="Name" className="companyDetails" required></input>
-            <input name="Location" placeholder="Location" className="companyDetails" required></input>
-            <input name="KYC" placeholder="KYC" className="companyDetails" required></input>
+            <PrettyInput type="text" name='Name' label='Company Name' min={0} max={0} />
+            <PrettyInput type="text" name='Location' label='Company Location' min={0} max={0} />
+            <PrettyInput type="text" name='KYC' label='Company Details' min={0} max={0} />
             <input type="submit" value={"SUBMIT"} className="py-2 px-4 bg-red-500 rounded-2xl mt-10 cursor-pointer"/>
         </form>
     )

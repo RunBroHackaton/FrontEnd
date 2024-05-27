@@ -2,17 +2,19 @@
 
 import { useAccount } from "wagmi"
 
-export default function TxPopup({ hash, status }) {
+export default function TxPopup({ hash, status } : any) {
     const { chainId } = useAccount()
 
-    const networkMap = {
+    const networkMap : { [key: number]: string } = {
         1: "https://etherscan.io/tx/", // Ethereum Mainnet
         11155111: "https://sepolia.etherscan.io/tx/" // Sepolia Testnet,
     }
 
     const dynamicLink = () => {
-        const etherscan = networkMap[chainId]
-        return `${etherscan}${hash}`
+        if(chainId){
+            const etherscan = networkMap[chainId]
+            return `${etherscan}${hash}`
+        }
     }
 
     return (

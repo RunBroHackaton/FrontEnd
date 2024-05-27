@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .loginButton {
@@ -12,22 +18,6 @@ body {
   margin-top: 1px;
   border-radius: 10px;
   margin-top: 5px;
-}
-
-.companyDetails {
-  width: 400px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  margin-top: 20px;
-  padding: 3px;
-  border-radius: 10px;
-  border: 2px solid #f4433660;
-  transition: border 500ms ease-out;
-}
-
-.companyDetails:focus {
-  outline: none;
-  border: 2px solid #f44336;
 }
 
 .actionButton {
@@ -47,4 +37,51 @@ body {
 
 .actionButton:active {
   transform: translateY(5px);
+}
+
+.prettyInput {
+  height: 40px;
+  width: 400px;
+  position: relative;
+}
+
+.input-wrapper {
+  height: 100%;
+  width: 100%;
+  padding-left: 10px;
+  border-radius: 10px;
+  border: 2px solid #f4433660;
+  transition: border 500ms ease-out;
+  z-index: 1;
+}
+
+.input-label {
+  position: absolute;
+  left: 10px;
+  top: 6px;
+  color: gray;
+  pointer-events: none;
+  z-index: 2;
+  background-color: white;
+  padding: 0 2px;
+  transition: all 500ms ease-out;
+}
+
+.input-wrapper:focus {
+  outline: none;
+  border: 2px solid #f44336;
+}
+
+.input-label-focus {
+  transform: translateY(-18px);
+  font-size: 14px;
+  left: 15px;
+  color: #f44336;
+}
+
+.input-label-focus-none {
+  transform: translateY(-18px);
+  font-size: 14px;
+  left: 15px;
+  color: #f4433660;
 }
