@@ -47,6 +47,7 @@ export default function FitnessData() {
       useEffect(() => {
         if (session?.accessToken) {
           const fetchStepsData = async () => {
+            console.log(session)
             const now = new Date();
             const startTimeMillis = now.setHours(0, 0, 0, 0) - 7 * 24 * 60 * 60 * 1000;
             const endTimeMillis = Date.now();
