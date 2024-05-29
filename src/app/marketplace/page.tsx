@@ -8,6 +8,8 @@ export default async function Marketplace() {
 
     if (!session || !session.user) {
         redirect("/")
+    } else {
+        console.log(session)
     }
     
     return (
