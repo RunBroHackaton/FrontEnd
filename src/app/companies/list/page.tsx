@@ -10,7 +10,7 @@ export default function List () {
     }
 
     return(
-        <form className="flex-1 flex flex-col items-center px-16 py-10 justify-evenly">
+        <div className="flex-1 flex flex-col items-center px-16 py-10 justify-evenly">
             <p className="text-center">List items</p>
             <div className="flex flex-row justify-evenly w-full">
                 <ImageUpload />
@@ -22,6 +22,6 @@ export default function List () {
             </div>
             <p className="mt-7">Platform fee: 10%</p>
             <input type="submit" className="actionButton cursor-pointer" value={"LIST"} />
-        </form>
+        </div>
     )
 }

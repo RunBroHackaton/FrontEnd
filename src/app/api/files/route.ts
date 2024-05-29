@@ -1,30 +1,6 @@
-import fs from "fs";
 import { NextResponse } from "next/server";
 const pinataSDK = require("@pinata/sdk");
 const pinata = new pinataSDK({ pinataJWTKey: process.env.PINATA_JWT });
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-const saveFile = async (file: any) => {
-  try {
-    const stream = fs.createReadStream(file.filepath);
-    const options = {
-      pinataMetadata: {
-        name: file.originalFilename,
-      },
-    };
-    const response = await pinata.pinFileToIPFS(stream, options);
-    fs.unlinkSync(file.filepath);
-
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
 
 export async function POST(request : Request) {
   try {
@@ -40,7 +16,6 @@ export async function POST(request : Request) {
       body: data,
     });
     const { IpfsHash } = await res.json();
-    console.log(IpfsHash);
     return NextResponse.json({ IpfsHash }, { status: 200 });
   } catch (e) {
     console.log(e);

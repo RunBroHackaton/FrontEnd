@@ -31,6 +31,7 @@ export default function FitnessData() {
 
     function parseStepsData(data: APIResponse): StepData[]  {
         return data.bucket.map((bucket: any) => {
+          console.log(session?.accessToken)  // For testing purposes
           const steps = bucket.dataset[0].point[0]?.value[0]?.intVal || 0;
           const startDate = new Date(parseInt(bucket.startTimeMillis, 10));
           const endDate = new Date(parseInt(bucket.endTimeMillis, 10));

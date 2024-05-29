@@ -10,6 +10,7 @@ export default async function Rewards() {
         redirect("/")
     }
 
+
     return (
         <div className="flex-1 flex flex-col items-center px-16 py-10">
             <p>Total Rewards Earned</p>
