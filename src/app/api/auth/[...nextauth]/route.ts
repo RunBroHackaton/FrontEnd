@@ -30,15 +30,28 @@ const authOptions: NextAuthOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async jwt({ token , account }: { token: JWT; account?: any}) {
+    async jwt({ token, account }) {
+      console.log("JWT callback", { token, account });
       if (account) {
         token.accessToken = account.access_token;
       }
       return token;
     },
-    async session({ session, token }: {session: Session; token: JWT}) {
+    async session({ session, token }) {
+      console.log("Session callback", { session, token });
       session.accessToken = token.accessToken;
       return session;
+    }
+  },
+  logger: {
+    error(code, metadata) {
+      console.error(code, metadata);
+    },
+    warn(code) {
+      console.warn(code);
+    },
+    debug(code, metadata) {
+      console.debug(code, metadata);
     }
   }
 };
