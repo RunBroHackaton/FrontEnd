@@ -10,7 +10,7 @@ export default function Home() {
     <main className="flex-1 flex justify-center items-center flex-col space-y-16">
       <div>
         <p className="ml-1">For users</p>
-        <div className="loginButton border-2 border-gray-800 flex justify-center items-center space-x-2 cursor-pointer" onClick={() => signIn("google", {callbackUrl: "http://localhost:3000/marketplace"})}>
+        <div className="loginButton border-2 border-gray-800 flex justify-center items-center space-x-2 cursor-pointer" onClick={() => signIn("google", {callbackUrl: `${process.env.NEXT_PUBLIC_URL}/marketplace`})}>
           <Image src="/googleIcon.png" height={20} width={20} alt="google Icon" className="inline-block" />
           <p className="inline">Login with Google Account</p>
         </div>
