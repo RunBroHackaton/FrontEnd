@@ -28,17 +28,17 @@ const authOptions: NextAuthOptions = {
       }
     })
   ],
-  secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, account }) {
-      console.log("JWT callback", { token, account });
       if (account) {
+        console.log(process.env.NEXTAUTH_SECRET)
         token.accessToken = account.access_token;
       }
       return token;
     },
     async session({ session, token }) {
-      console.log("Session callback", { session, token });
+      console.log(process.env.NEXTAUTH_SECRET)
       session.accessToken = token.accessToken;
       return session;
     }
