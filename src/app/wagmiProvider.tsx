@@ -13,6 +13,7 @@ import {
   optimism,
   arbitrum,
   base,
+  polygonAmoy,
   sepolia
 } from 'wagmi/chains';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
@@ -44,22 +45,15 @@ export default function Providers({
 
     const config = createConfig({
       connectors,
-      chains: [mainnet, sepolia], 
+      chains: [polygonAmoy, sepolia], 
       transports: {
-        [mainnet.id]: http('https://mainnet.example.com'),
-        [sepolia.id]: http('https://sepolia.example.com'),
+        [polygonAmoy.id]: http(),
+        [sepolia.id]: http()
       },
     });
     
 
     const queryClient = new QueryClient()
-
-    // const myCustomTheme: Theme = {
-    //   colors: {
-    //     accentColor: '#22c55e',
-    //     connectButtonText: "#FFFFFF"
-    //   }
-    // }
     
 
 return (

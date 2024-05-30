@@ -85,3 +85,48 @@ input::-webkit-inner-spin-button {
   left: 15px;
   color: #f4433660;
 }
+
+.outer {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  width: 185px;
+  height: 65px;
+  border-radius: 20px;
+  opacity: 0;
+  transform: translateX(50px);
+  color: #203354;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    to left,
+    transparent,
+    transparent 50%,
+    #06b6d4 50%,
+    #06b6d4
+  );
+  background-position: 100% 0;
+  background-size: 200% 100%;
+  animation: appearPopup 10s linear;
+}
+
+.inner {
+  width: 180px;
+  height: 60px;
+  border-radius: 19px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@keyframes fillBorder {
+  90% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}

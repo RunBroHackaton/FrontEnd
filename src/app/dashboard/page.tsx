@@ -12,7 +12,7 @@ export default async function Dashboard() {
     }
 
     return (
-        <div className="flex-1 flex flex-col items-center px-16 py-10">
+        <div className="flex-1 flex flex-col items-center px-16 py-10 space-y-16">
             <p>Your Shoe - Nike Gold Edition</p>
             <p>Your Fitness Data from 1st May</p>
             <FitnessData />

@@ -1,13 +1,15 @@
 "use client"
 
+import { Hash } from "viem"
 import { useAccount } from "wagmi"
 
-export default function TxPopup({ hash, status } : any) {
+export default function TxPopup({ hash, status } : { hash: Hash | undefined, status: string}) {
     const { chainId } = useAccount()
 
     const networkMap : { [key: number]: string } = {
         1: "https://etherscan.io/tx/", // Ethereum Mainnet
-        11155111: "https://sepolia.etherscan.io/tx/" // Sepolia Testnet,
+        11155111: "https://sepolia.etherscan.io/tx/", // Sepolia Testnet
+        80002: "https://amoy.polygonscan.com/txt/" // Matic Testnet
     }
 
     const dynamicLink = () => {

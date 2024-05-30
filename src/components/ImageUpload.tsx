@@ -2,12 +2,12 @@
 
 import { useState, useRef, ChangeEvent } from "react"
 import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
 
 
-export default function ImageUpload () {
+export default function ImageUpload ({ cid, setCid } : { cid: string, setCid: Dispatch<SetStateAction<string>>}) {
     const [file, setFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false)
-    const [cid, setCid] = useState("")
 
     const upload = useRef<HTMLInputElement>(null);
 

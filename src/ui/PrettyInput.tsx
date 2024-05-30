@@ -1,10 +1,9 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, Dispatch, SetStateAction } from "react"
 
-export default function PrettyInput({type, name, label, min, max} : {type: string, name: string, label: string, min: number, max: number}) {
+export default function PrettyInput({type, name, label, min, max, input, setInput} : {type: string, name: string, label: string, min: number, max: number, input: any, setInput: Dispatch<SetStateAction<any>>}) {
 
-    const [input, setInput] = useState("")
     const [focus, setFocus] = useState(false)
 
     const inputRef = useRef<HTMLInputElement>(null)
