@@ -17,6 +17,38 @@
   },
   {
     "type": "function",
+    "name": "KYCdetailsOfLister",
+    "inputs": [
+      {
+        "name": "_account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "SellerRegisteration",
+    "inputs": [
+      {
+        "name": "_creditCardNumber",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "buy",
     "inputs": [
       {
@@ -175,11 +207,6 @@
     "name": "list",
     "inputs": [
       {
-        "name": "_id",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
         "name": "_name",
         "type": "string",
         "internalType": "string"
@@ -264,6 +291,25 @@
   },
   {
     "type": "function",
+    "name": "s_IsSellerRegistred",
+    "inputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "s_IsUserRegistred",
     "inputs": [
       {
@@ -277,6 +323,25 @@
         "name": "",
         "type": "bool",
         "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "s_SellerKYC",
+    "inputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
       }
     ],
     "stateMutability": "view"
