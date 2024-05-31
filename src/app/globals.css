@@ -157,3 +157,31 @@ input::-webkit-inner-spin-button {
     background-position: 0 0;
   }
 }
+
+.buyButton {
+  height: 40px;
+  width: 150px;
+  border-radius: 20px;
+  background-image: linear-gradient(
+    to left,
+    #ffffff,
+    #ffffff 50%,
+    #06b6d4 50%,
+    #06b6d4
+  );
+  color: black;
+  background-position: 100% 0;
+  background-size: 200% 100%;
+  transition: all 0.45s ease-in;
+}
+
+.buyButton:hover {
+  color: white;
+  background-position: 0 0;
+  background-color: #06b6d4;
+  color: #fff;
+}
+
+.shoeListContainer {
+  box-shadow: 0 0 1.5em #06b6d4;
+}

@@ -17,7 +17,6 @@ export default async function Marketplace() {
       <p>Purchase a shoe to Run and Earn!</p>
       <p>Popular Shoes</p>
       <ItemList />
-      <button className="actionButton">Buy</button>
       <Link href="/dashboard">
         <button className="actionButton">Go To Your Dashboard</button>
       </Link>

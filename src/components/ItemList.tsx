@@ -11,12 +11,10 @@ import ItemModal from "./ItemModal";
 export default function ItemList() {
   const [shoeList, setShoeList] = useState<any[] | null>([]);
 
-  const [quantity, setQuantity] = useState(0);
-
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState("");
 
-  const selectItem = (item : any) => {
+  const selectItem = (item: any) => {
     setSelectedItem(item);
     setShowModal(true);
   };
@@ -42,26 +40,36 @@ export default function ItemList() {
     })),
   });
 
+  const { data: shoeListData } = useReadContracts({
+    contracts: shoeMapping?.map((shoe: any) => ({
+      abi: MARKETPLACE_ABI as Abi,
+      address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
+      functionName: "s_isSoldOut",
+      args: [shoe.result[0]],
+    })),
+  });
+
   useEffect(() => {
-    if (shoeMapping) {
-      console.log(shoeMapping);
+    if (shoeMapping && shoeListData) {
       let result = shoeMapping.map((item: any) => {
         return item.result;
       });
-      console.log(result);
-      let filteredResult = result.filter((item: any) => {
-        return Number(item[0]) !== 0;
+      let filteredResult = result.filter((item: any, index: number) => {
+        return Number(item[0]) !== 0 && !shoeListData[index].result;
       });
-      console.log(filteredResult);
       setShoeList(filteredResult);
     }
-  }, [shoeMapping]);
+  }, [shoeListData]);
 
   return (
     <>
-      <div className="grid auto-rows-min auto-cols-max grid-cols-5 gap-10 place-items-center w-[75vw] h-[50vh] bg-gray-300 shadow-md shadow-red-500 p-5">
+      <div className="grid auto-rows-min auto-cols-max grid-cols-5 gap-10 place-items-center w-[75vw] h-[50vh] bg-gray-300 shoeListContainer p-5">
         {shoeList && shoeList?.length > 0 ? (
-          <>{shoeList?.map((shoe) => <Item item={shoe} selectItem={selectItem} />)}</>
+          <>
+            {shoeList?.map((shoe) => (
+              <Item item={shoe} selectItem={selectItem} />
+            ))}
+          </>
         ) : (
           <p className="absolute top-1/2 right-auto">No shoes available!</p>
         )}

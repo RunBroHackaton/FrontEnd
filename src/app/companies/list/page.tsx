@@ -2,7 +2,7 @@
 
 import ImageUpload from "@/components/ImageUpload";
 import PrettyInput from "@/ui/PrettyInput";
-import { useWriteContract } from "wagmi";
+import { useWriteContract, useAccount } from "wagmi";
 import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
 import abi from "../../../../contract_abis/MarketPlace.json";
 import { Address } from "viem";
@@ -10,15 +10,18 @@ import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import TxPopup from "@/components/TxPopup";
 import CircleLoading from "@/ui/CircleLoading";
-import ItemModal from "@/components/ItemModal";
+import { useRouter } from "next/navigation";
 
 export default function List() {
   const [cid, setCid] = useState("");
+  const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [reward, setReward] = useState(0);
-  const [steps, setSteps] = useState(0);
+  const [factor, setFactor] = useState(0);
   const [quantity, setQuantity] = useState(0);
 
+  const router = useRouter();
+
+  const { isConnected } = useAccount();
   const {
     status: listStatus,
     data: listHash,
@@ -28,16 +31,6 @@ export default function List() {
 
   const handleClick = () => {
     console.log("Listing an item...");
-    console.log(
-      "Nike",
-      "Terminal",
-      `${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/${cid}`,
-      ethers.parseEther(price.toString()),
-      ethers.parseEther((reward / steps).toString()),
-      ethers.parseEther(quantity.toString())
-    );
-    console.log(abi);
-    console.log(CONTRACT_ADDRESSES["MARKETPLACE"]);
     try {
       listItem({
         abi: abi,
@@ -51,7 +44,7 @@ export default function List() {
           BigInt("1"),
           BigInt(quantity),
         ],
-        value: ethers.parseEther("0.01"),
+        value: ethers.parseEther("0.001"),
       });
     } catch (error) {
       console.log(error);
@@ -59,8 +52,10 @@ export default function List() {
   };
 
   useEffect(() => {
-    console.log(listStatus);
-  }, [listStatus]);
+    if (!isConnected) {
+      router.push("/companies");
+    }
+  }, [isConnected]);
 
   return (
     <>
@@ -69,6 +64,15 @@ export default function List() {
         <div className="flex flex-row justify-evenly w-full">
           <ImageUpload cid={cid} setCid={setCid} />
           <div className="flex flex-col items-center justify-center space-y-12">
+            <PrettyInput
+              type="text"
+              name="Name"
+              label="Shoe Name"
+              input={name}
+              setInput={setName}
+              min={0}
+              max={0}
+            />
             <PrettyInput
               type="number"
               name="Price"
@@ -80,19 +84,10 @@ export default function List() {
             />
             <PrettyInput
               type="number"
-              name="Reward"
-              label="Reward In RB"
-              input={reward}
-              setInput={setReward}
-              min={0}
-              max={0}
-            />
-            <PrettyInput
-              type="number"
-              name="Steps"
-              label="Steps Achieved"
-              input={steps}
-              setInput={setSteps}
+              name="factor"
+              label="Reward factor"
+              input={factor}
+              setInput={setFactor}
               min={0}
               max={0}
             />
@@ -111,7 +106,7 @@ export default function List() {
         <button className="actionButton" onClick={handleClick}>
           {pendingList ? (
             <div className="h-5 flex justify-center items-center w-5 mx-auto">
-              <CircleLoading />
+              <CircleLoading color={"#ef4444"} />
             </div>
           ) : (
             "LIST"

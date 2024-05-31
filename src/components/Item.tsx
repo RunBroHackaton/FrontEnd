@@ -5,17 +5,20 @@ export default function Item({
   selectItem,
 }: {
   item: any;
-  selectItem: (item: any) => void;
+  selectItem: any;
 }) {
-  console.log(item);
-
   function expo(x: any, f: any) {
     return Number.parseFloat(x).toExponential(f);
   }
 
   return (
-    <div className="bg-red-500/80 border hover:bg-red-500 cursor-pointer border-red-500 rounded-lg p-1 transition-all duration-100 ease-out" onClick={selectItem(item)}>
-      <div className="relative h-[100px] w-[140px] border border-red-500 rounded-sm">
+    <div
+      className="bg-black border text-white hover:bg-red-500 cursor-pointer border-white rounded-lg p-1 transition-all duration-200 ease-out"
+      onClick={() => {
+        selectItem(item);
+      }}
+    >
+      <div className="relative h-[100px] w-[140px] rounded-sm">
         <Image
           loader={() =>
             item[3].includes(`${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/`)
@@ -32,13 +35,13 @@ export default function Item({
         />
       </div>
       <div className="text-center text-xs mt-1">
-        <p className="border-b-black w-16 mx-auto border-b">Price</p>
+        <p className="border-b-white w-16 mx-auto border-b">Price</p>
         <p>
           {Number(item[4]) / 100000 > 1
             ? expo(Number(item[4]), 4)
             : Number(item[4])}
         </p>
-        <p className="border-b-black w-16 mx-auto border-b">Factor</p>
+        <p className="border-b-white w-16 mx-auto border-b">Factor</p>
         <p>
           {Number(item[5]) / 100000 > 1
             ? expo(Number(item[5]), 4)

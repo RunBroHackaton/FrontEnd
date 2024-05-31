@@ -26,12 +26,6 @@ export default function TxPopup({
     }
   };
 
-  useEffect(() => {
-    console.log("TEXT");
-    console.log(status);
-    console.log(hash);
-  }, [hash]);
-
   return (
     <>
       {status === "error" ? (
@@ -40,13 +34,17 @@ export default function TxPopup({
             <p>
               Error!<span className="ml-1">🚫</span>
             </p>
-            <a
-              href={dynamicLink()}
-              target="_blank"
-              className="underline cursor-pointer hover:text-gray-400 hover:decoration-gray-400"
-            >
-              View on etherscan
-            </a>
+            {hash ? (
+              <a
+                href={dynamicLink()}
+                target="_blank"
+                className="underline cursor-pointer hover:text-gray-400 hover:decoration-gray-400"
+              >
+                View on etherscan
+              </a>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       ) : status === "success" ? (
