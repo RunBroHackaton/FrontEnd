@@ -1,7 +1,7 @@
 "use client";
 import PrettyInput from "@/ui/PrettyInput";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, FormEvent } from "react";
 import {
   useConnect,
   useAccount,
@@ -19,6 +19,7 @@ export default function Companies() {
   const [location, setLocation] = useState("");
   const [KYC, setKYC] = useState("");
   const [creditNumber, setCreditNumber] = useState(0);
+  const [checkingIfRegistered, setCheckingIfRegistered] = useState(false);
 
   const router = useRouter();
 
@@ -39,8 +40,7 @@ export default function Companies() {
     writeContract: registerWallet,
   } = useWriteContract();
 
-  const handleSubmit = (e) => {
-    // TO DO
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       registerWallet({
@@ -58,6 +58,10 @@ export default function Companies() {
     if (!isConnected && connectors.length > 0) {
       connect({ connector: injected() });
     }
+    setCheckingIfRegistered(true);
+    setTimeout(() => {
+      setCheckingIfRegistered(false);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -69,7 +73,7 @@ export default function Companies() {
 
   return (
     <>
-      {isConnected && !isRegistered ? (
+      {isConnected && !isRegistered && !checkingIfRegistered ? (
         <form
           className="flex-1 flex justify-center items-center flex-col space-y-8"
           onSubmit={handleSubmit}
@@ -116,14 +120,18 @@ export default function Companies() {
           />
           <input
             type="submit"
-            value={"SUBMIT"}
+            value={registerPending ? "REGISTERING..." : "REGISTER"}
             className="actionButton mt-10 cursor-pointer"
           />
         </form>
       ) : (
         <div className="flex-1 flex justify-center items-center">
-          <button className="actionButton" onClick={connectWallet}>
-            CONNECT WALLET
+          <button
+            className="actionButton"
+            onClick={connectWallet}
+            disabled={checkingIfRegistered}
+          >
+            {checkingIfRegistered ? "CONNECTING..." : "CONNECT WALLET"}
           </button>
         </div>
       )}
