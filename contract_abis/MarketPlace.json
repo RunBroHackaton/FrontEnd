@@ -186,6 +186,25 @@
   },
   {
     "type": "function",
+    "name": "getShoeIdsOwnedByUser",
+    "inputs": [
+      {
+        "name": "_user",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "getShoeRB_Factor",
     "inputs": [
       {
@@ -409,6 +428,25 @@
   },
   {
     "type": "function",
+    "name": "s_arrayOfIds",
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "s_hasUserPurchased_A_Shoe",
     "inputs": [
       {
@@ -446,6 +484,30 @@
         "name": "",
         "type": "bool",
         "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "s_numberOfShoeIdsOwnerByUser",
+    "inputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
       }
     ],
     "stateMutability": "view"
@@ -646,10 +708,29 @@
   },
   {
     "type": "function",
+    "name": "s_userSelectedShoe",
+    "inputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "selectShoe",
     "inputs": [
       {
-        "name": "_shoeId",
+        "name": "_id",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -657,53 +738,11 @@
     "outputs": [
       {
         "name": "",
-        "type": "tuple",
-        "internalType": "struct MarketPlace.Shoe",
-        "components": [
-          {
-            "name": "id",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "name",
-            "type": "string",
-            "internalType": "string"
-          },
-          {
-            "name": "brand",
-            "type": "string",
-            "internalType": "string"
-          },
-          {
-            "name": "image",
-            "type": "string",
-            "internalType": "string"
-          },
-          {
-            "name": "cost",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "RB_Factor",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "quantity",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "lister",
-            "type": "address",
-            "internalType": "address"
-          }
-        ]
+        "type": "uint256",
+        "internalType": "uint256"
       }
     ],
-    "stateMutability": "view"
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
