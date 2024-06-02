@@ -1,5 +1,3 @@
-"use client";
-
 import { MouseEvent } from "react";
 import { useWriteContract } from "wagmi";
 import abi from "../../contract_abis/MarketPlace.json";
@@ -44,6 +42,15 @@ export default function RedeemModal({
     }
   };
 
+  const getTimeLeft = async (startOfDay: any) => {
+    const endOfDay = Number(startOfDay) + 24 * 60 * 60;
+    const currentTimeStamp = Math.round(Date.now() / 1000);
+    const time = endOfDay - currentTimeStamp;
+    const hoursLeft = Math.floor(time / 60 / 60);
+    const minutesLeft = Math.floor(time / 60) % 24;
+    return `${hoursLeft} H ${minutesLeft} min`;
+  };
+
   return (
     <>
       <div
@@ -52,7 +59,7 @@ export default function RedeemModal({
         onClick={close}
       >
         <div className="relative w-[700px] h-[450px] flex flex-row p-5 rounded-lg bg-black justify-around items-center">
-          <p>COUNTDOWN TIMER</p>
+          <p>Time Left!</p>
           <p>Reedem yesterday's 100steps for RB</p>
           <button className="actionButton">
             {redeemPending ? "Redeeming..." : "REDEEM"}

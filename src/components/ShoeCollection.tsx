@@ -6,16 +6,13 @@ import abi from "../../contract_abis/MarketPlace.json";
 import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
 import { useEffect, useState } from "react";
 import Shoe from "./Shoe";
-import RedeemModal from "./RedeemModal";
 
-export default function ShoeCollection() {
-  const [collection, setCollection] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedShoe, setSelectedShoe] = useState("");
+export default function ShoeCollection({ setSelectedShoe }: any) {
+  const [collection, setCollection] = useState<any[]>([]);
 
   const { address } = useAccount();
 
-  const { data: ownerShoeIds } = useReadContract({
+  const { data: ownerShoeId } = useReadContract({
     abi: abi,
     address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
     functionName: "getShoeIdsOwnedByUser",
@@ -23,7 +20,7 @@ export default function ShoeCollection() {
   });
 
   const { data: shoes } = useReadContracts({
-    contracts: ownerShoeIds?.map((shoeId: any) => ({
+    contracts: (ownerShoeIds ?? []).map((shoeId: bigint) => ({
       abi: abi,
       address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
       functionName: "s_shoes",
@@ -31,40 +28,38 @@ export default function ShoeCollection() {
     })),
   });
 
+  useEffect(() => {
+    console.log(ownerShoeIds)
+  }, [ownerShoeIds])
+
   const selectShoe = (shoe: any) => {
     setSelectedShoe(shoe);
   };
 
   useEffect(() => {
-    console.log(ownerShoeIds);
-  }, [ownerShoeIds]);
-
-  useEffect(() => {
     if (shoes) {
-      setCollection(shoes.result);
+      let shoeArray = shoes.map((shoe: any) => {
+        return shoe.result;
+      });
+      setCollection(shoeArray);
     }
   }, [shoes]);
 
   return (
     <>
-      <div className="h-[1000px] w-[500px] flex flex-col">
-        {collection ? (
+      <div className="h-[60vh] w-[40vw] flex flex-col border-4 border-red-500 shoeListContainer rounded-2xl py-2">
+        {collection && collection.length > 0 ? (
           <>
             {collection.map((shoe) => (
               <Shoe item={shoe} selectItem={selectShoe} />
             ))}
           </>
         ) : (
-          <p className="mx-auto my-auto text-center">
+          <p className="mx-auto my-auto text-center text-black text-xl">
             No shoes available in collection
           </p>
         )}
       </div>
-      <RedeemModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        item={selectedShoe}
-      />
     </>
   );
 }

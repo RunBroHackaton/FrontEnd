@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import WagmiProvider from "./wagmiProvider";
-import SessionProvider from "./sessionProvider"
-
-const inter = Inter({ subsets: ["latin"] });
+import SessionProvider from "./sessionProvider";
 
 export const metadata: Metadata = {
   title: "RunBro",
@@ -18,17 +15,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-        <html lang="en">
-          <body>
-            <WagmiProvider>
-              <SessionProvider>
-                <main className="min-h-screen w-full flex flex-col">
-                  <Header />
-                  {children}
-                </main>
-              </SessionProvider>
-            </WagmiProvider>
-          </body>
-        </html>
+    <html lang="en">
+      <body>
+        <WagmiProvider>
+          <SessionProvider>
+            <main className="min-h-screen w-full flex flex-col px-[5vh]">
+              <Header />
+              {children}
+            </main>
+          </SessionProvider>
+        </WagmiProvider>
+      </body>
+    </html>
   );
 }

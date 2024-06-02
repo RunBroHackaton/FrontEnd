@@ -12,8 +12,8 @@ export default function User() {
 
   const [logout, setLogout] = useState(false);
 
-//   const { connect, connectors } = useConnect();
-//   const { isConnected } = useAccount();
+  //   const { connect, connectors } = useConnect();
+  //   const { isConnected } = useAccount();
 
   //   useEffect(() => {
   //     if (
@@ -25,9 +25,9 @@ export default function User() {
   //     }
   //   }, [connect, connectors, isConnected]);
 
-//   useEffect(() => {
-//     console.log(path);
-//   }, [path]);
+  //   useEffect(() => {
+  //     console.log(path);
+  //   }, [path]);
 
   return session?.user?.name && path !== "/" ? (
     <div className="flex flex-row items-center justify-center space-x-8">
@@ -40,9 +40,7 @@ export default function User() {
             }, 300);
           }}
           onMouseLeave={() => {
-            setTimeout(() => {
-              setLogout(false);
-            }, 100);
+            setLogout(false);
           }}
         >
           <div

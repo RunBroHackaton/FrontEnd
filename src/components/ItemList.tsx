@@ -63,7 +63,7 @@ export default function ItemList() {
 
   return (
     <>
-      <div className="grid auto-rows-min auto-cols-max grid-cols-5 gap-10 place-items-center w-[75vw] h-[50vh] bg-gray-300 shoeListContainer p-5">
+      <div className="container place-items-center w-[75vw] h-[50vh] border-4 border-red-500 rounded-3xl shoeListContainer p-5">
         {shoeList && shoeList?.length > 0 ? (
           <>
             {shoeList?.map((shoe) => (
@@ -71,7 +71,7 @@ export default function ItemList() {
             ))}
           </>
         ) : (
-          <p className="absolute top-1/2 right-auto">No shoes available!</p>
+          <p className="mx-auto my-auto text-xl">No shoes available!</p>
         )}
       </div>
       <ItemModal

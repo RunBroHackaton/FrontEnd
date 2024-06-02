@@ -60,7 +60,7 @@ export default function List() {
   return (
     <>
       <div className="flex-1 flex flex-col items-center px-16 py-10 justify-evenly">
-        <p className="text-center">List items</p>
+        <p className="text-center heading">List items</p>
         <div className="flex flex-row justify-evenly w-full">
           <ImageUpload cid={cid} setCid={setCid} />
           <div className="flex flex-col items-center justify-center space-y-12">

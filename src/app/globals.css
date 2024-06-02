@@ -13,6 +13,7 @@ input::-webkit-inner-spin-button {
 
 .loginButton {
   width: 300px;
+  height: 50px;
   padding-top: 3px;
   padding-bottom: 3px;
   margin-top: 1px;
@@ -183,5 +184,22 @@ input::-webkit-inner-spin-button {
 }
 
 .shoeListContainer {
-  box-shadow: 0 0 1.5em #06b6d4;
+  box-shadow: 0 0 2em #ef4444;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 1rem;
+}
+
+.heading {
+  font-size: 25px;
+  color: #ef4444;
+  text-shadow: 0 0 0.2em #ef444480;
+}
+
+.header {
+  background-color: #f44336;
+  box-shadow: 0 0 1em #ef4444;
 }

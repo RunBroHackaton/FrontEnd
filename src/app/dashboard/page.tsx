@@ -1,8 +1,7 @@
-import FitnessData from "@/components/FitnessData";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
-import ShoeCollection from "@/components/ShoeColletion";
+import UserDashboard from "@/components/UserDashboard";
+import { lilita_one } from "@/ui/Fonts";
 
 export default async function Dashboard() {
   const session = await getServerSession();
@@ -13,17 +12,10 @@ export default async function Dashboard() {
 
   return (
     <div className="flex-1 flex flex-col items-center px-16 py-10 space-y-16">
-      <p>Your Shoe - Nike Gold Edition</p>
-      <div className="flex flex-row">
-        <ShoeCollection />
-        <div className="flex flex-col">
-          <p>Your Fitness Data from 1st May</p>
-          <FitnessData />
-          <Link href="/dashboard/rewards">
-            <button className="actionButton">Calculate RB Token Earned</button>
-          </Link>
-        </div>
-      </div>
+      <p className={`heading ${lilita_one.className}`}>
+        Your Shoe Collection Dashboard
+      </p>
+      <UserDashboard />
     </div>
   );
 }
