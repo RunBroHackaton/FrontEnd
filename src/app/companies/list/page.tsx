@@ -6,7 +6,7 @@ import { useWriteContract, useAccount } from "wagmi";
 import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
 import abi from "../../../../contract_abis/MarketPlace.json";
 import { Address } from "viem";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ethers } from "ethers";
 import TxPopup from "@/components/TxPopup";
 import CircleLoading from "@/ui/CircleLoading";
@@ -107,8 +107,8 @@ export default function List() {
         <p className="mt-7">Platform fee: 10%</p>
         <button className="actionButton" onClick={handleClick}>
           {pendingList ? (
-            <div className="h-5 flex justify-center items-center w-5 mx-auto">
-              <CircleLoading color={"#ef4444"} />
+            <div className="flex justify-center items-center h-6 w-full">
+              <CircleLoading />
             </div>
           ) : (
             "LIST"

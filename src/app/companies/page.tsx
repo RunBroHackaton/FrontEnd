@@ -136,7 +136,7 @@ export default function Companies() {
             onClick={connectWallet}
             disabled={registerPending}
           >
-            {registerPending ? "CONNECTING..." : "CONNECT WALLET"}
+            CONNECT WALLET
           </button>
         </div>
       )}

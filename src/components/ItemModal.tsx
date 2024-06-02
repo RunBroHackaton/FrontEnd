@@ -91,8 +91,8 @@ export default function ItemModal({
               <p>{`Quantity: ${item[6]}`}</p>
               <button className="buyButton" onClick={handleBuy}>
                 {buyPending ? (
-                  <div className="h-5 flex justify-center items-center w-5">
-                    <CircleLoading color={"#ef4444"} />
+                  <div className="flex justify-center items-center h-6 w-full">
+                    <CircleLoading />
                   </div>
                 ) : (
                   "BUY ITEM"
