@@ -1,6 +1,6 @@
 "use client";
 
-import { Address } from "viem";
+import { Abi, Address } from "viem";
 import { useReadContract, useAccount, useReadContracts } from "wagmi";
 import abi from "../../contract_abis/MarketPlace.json";
 import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
@@ -12,25 +12,25 @@ export default function ShoeCollection({ setSelectedShoe }: any) {
 
   const { address } = useAccount();
 
-  const { data: ownerShoeId } = useReadContract({
+  const { data: ownerShoeIds } = useReadContract({
     abi: abi,
     address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
     functionName: "getShoeIdsOwnedByUser",
     args: [address],
-  });
+  }) as { data: bigint[] | undefined };
 
   const { data: shoes } = useReadContracts({
     contracts: (ownerShoeIds ?? []).map((shoeId: bigint) => ({
-      abi: abi,
+      abi: abi as Abi,
       address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
       functionName: "s_shoes",
       args: [shoeId],
     })),
-  });
+  }) as { data: any };
 
   useEffect(() => {
-    console.log(ownerShoeIds)
-  }, [ownerShoeIds])
+    console.log(ownerShoeIds);
+  }, [ownerShoeIds]);
 
   const selectShoe = (shoe: any) => {
     setSelectedShoe(shoe);
