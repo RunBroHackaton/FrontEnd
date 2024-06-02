@@ -3,7 +3,7 @@
 import { MouseEvent, useState } from "react";
 import Image from "next/image";
 import { useWriteContract } from "wagmi";
-import abi from "../../contract_abis/MarketPlace.json";
+import abi from "../../contract_abis/PoolModel2.json";
 import CONTRACT_ADDRESSES from "../constants/Addresses.json";
 import { Address } from "viem";
 import TxPopup from "./TxPopup";
@@ -25,7 +25,7 @@ export default function Convert() {
     try {
       convertToWeth({
         abi: abi,
-        address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
+        address: CONTRACT_ADDRESSES["POOL"] as Address,
         functionName: "",
         args: [ethers.parseEther(inputRB.toString())],
       });
@@ -36,22 +36,25 @@ export default function Convert() {
 
   return (
     <>
-      <div className="flex flex-row">
-        <p>Market</p>
-        <p>1RB per {"10"}WETH</p>
+      <div className="flex flex-col items-center justify-center space-y-6">
+        <div className="flex flex-row">
+          <p>Market</p>
+          <p>1RB per {"10"}WETH</p>
+        </div>
+        <PrettyInput
+          name="inputRB"
+          type="number"
+          label="Input RB amount"
+          input={inputRB}
+          setInput={setInputRB}
+          min={0}
+          max={0}
+        />
+        <p>Estimated return: 10 WETH</p>
+        <button className="actionButton" onClick={handleConvert}>
+          CONVERT
+        </button>
       </div>
-      <PrettyInput
-        name="inputRB"
-        type="number"
-        label="Iput RB amount"
-        input={inputRB}
-        setInput={setInputRB}
-        min={0}
-        max={0}
-      />
-      <button className="actionButton" onClick={handleConvert}>
-        CONVERT
-      </button>
       <TxPopup hash={convertHash} status={convertStatus} />
     </>
   );

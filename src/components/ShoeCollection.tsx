@@ -50,8 +50,8 @@ export default function ShoeCollection({ setSelectedShoe }: any) {
       <div className="h-[60vh] w-[40vw] flex flex-col border-4 border-red-500 shoeListContainer rounded-2xl py-2">
         {collection && collection.length > 0 ? (
           <>
-            {collection.map((shoe) => (
-              <Shoe item={shoe} selectItem={selectShoe} />
+            {collection.map((shoe, i) => (
+              <Shoe item={shoe} selectItem={selectShoe} key={i} />
             ))}
           </>
         ) : (

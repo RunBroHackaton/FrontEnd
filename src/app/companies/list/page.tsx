@@ -40,16 +40,18 @@ export default function List() {
           "Nike",
           "Terminal",
           `${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/${cid}`,
-          BigInt(price),
-          BigInt("1"),
+          ethers.parseEther(price.toString()),
+          ethers.parseEther(factor.toString()),
           BigInt(quantity),
         ],
-        value: ethers.parseEther("0.001"),
+        value: ethers.parseEther((price / 10 + factor / 10).toString()),
       });
     } catch (error) {
       console.log(error);
     }
   };
+
+  //require(msg.value >= (_cost * 10)/100 + (_RB_Factor*10)/ 100, "Insufficient fee");
 
   useEffect(() => {
     if (!isConnected) {

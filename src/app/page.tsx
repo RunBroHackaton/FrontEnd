@@ -20,7 +20,7 @@ export default function Home() {
         <div>
           <p className="ml-1">For users</p>
           <div
-            className="loginButton border-2 border-gray-800 flex justify-center items-center space-x-2 cursor-pointer"
+            className="loginButton googleLogin border-2 border-green-600 flex justify-center items-center space-x-2 cursor-pointer"
             onClick={() =>
               signIn("google", {
                 callbackUrl: `${process.env.NEXT_PUBLIC_URL}/marketplace`,
@@ -40,7 +40,7 @@ export default function Home() {
         <div>
           <p className="ml-1">For Companies/Investors</p>
           <Link href="/companies">
-            <div className="loginButton border-2 border-red-700 flex justify-center items-center">
+            <div className="loginButton registerLogin border-2 border-red-700 flex justify-center items-center">
               <p className="text-center">Register</p>
             </div>
           </Link>

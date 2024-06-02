@@ -19,7 +19,7 @@ export default function Companies() {
   const [location, setLocation] = useState("");
   const [KYC, setKYC] = useState("");
   const [creditNumber, setCreditNumber] = useState(0);
-  const [checkingIfRegistered, setCheckingIfRegistered] = useState(false);
+  const [connectedWallet, setConnectedWallet] = useState(false);
 
   const router = useRouter();
 
@@ -58,11 +58,13 @@ export default function Companies() {
     if (!isConnected && connectors.length > 0) {
       connect({ connector: injected() });
     }
-    setCheckingIfRegistered(true);
-    setTimeout(() => {
-      setCheckingIfRegistered(false);
-    }, 1000);
   };
+
+  useEffect(() => {
+    if (isConnected) {
+      setConnectedWallet(true);
+    }
+  }, [isConnected]);
 
   useEffect(() => {
     console.log("is registered", isRegistered);
@@ -73,7 +75,7 @@ export default function Companies() {
 
   return (
     <>
-      {isConnected && !isRegistered && !checkingIfRegistered ? (
+      {connectedWallet && !isRegistered ? (
         <form
           className="flex-1 flex justify-center items-center flex-col space-y-8"
           onSubmit={handleSubmit}
@@ -129,9 +131,9 @@ export default function Companies() {
           <button
             className="actionButton"
             onClick={connectWallet}
-            disabled={checkingIfRegistered}
+            disabled={registerPending}
           >
-            {checkingIfRegistered ? "CONNECTING..." : "CONNECT WALLET"}
+            {registerPending ? "CONNECTING..." : "CONNECT WALLET"}
           </button>
         </div>
       )}

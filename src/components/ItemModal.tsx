@@ -52,7 +52,7 @@ export default function ItemModal({
     if (buyStatus === "success") {
       setTimeout(() => {
         setShowModal(false);
-      }, 500);
+      }, 1000);
     }
   }, [buyStatus]);
 
@@ -84,8 +84,8 @@ export default function ItemModal({
             <p className="text-xl">{`Shoe ${item[0]}`}</p>
             <p>{`Name: ${item[1]}`}</p>
             <p>{`Company: ${item[2]}`}</p>
-            <p>{`Price: ${item[4]}`}</p>
-            <p>{`RB_Factor: ${item[5]}`}</p>
+            <p>{`Price: ${Number(item[4]) / 10 ** 18} ETH`}</p>
+            <p>{`RB_Factor: ${Number(item[5]) / 10 ** 18}`}</p>
             <p>{`Quantity: ${item[6]}`}</p>
             <button className="buyButton" onClick={handleBuy}>
               {buyPending ? (

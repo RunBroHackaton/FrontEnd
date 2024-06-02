@@ -36,17 +36,9 @@ export default function Item({
       </div>
       <div className="text-center text-xs mt-1">
         <p className="border-b-white w-16 mx-auto border-b">Price</p>
-        <p>
-          {Number(item[4]) / 100000 > 1
-            ? expo(Number(item[4]), 4)
-            : Number(item[4])}
-        </p>
+        <p>{Number(item[4]) / 10 ** 18} ETH</p>
         <p className="border-b-white w-16 mx-auto border-b">Factor</p>
-        <p>
-          {Number(item[5]) / 100000 > 1
-            ? expo(Number(item[5]), 4)
-            : Number(item[5])}
-        </p>
+        <p>{Number(item[5]) / 10 ** 18}</p>
       </div>
     </div>
   );

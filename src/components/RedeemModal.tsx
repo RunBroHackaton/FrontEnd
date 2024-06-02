@@ -60,7 +60,7 @@ export default function RedeemModal({
       >
         <div className="relative w-[700px] h-[450px] flex flex-row p-5 rounded-lg bg-black justify-around items-center">
           <p>Time Left!</p>
-          <p>Reedem yesterday's 100steps for RB</p>
+          <p>Reedem yesterday's steps for RB</p>
           <button className="actionButton">
             {redeemPending ? "Redeeming..." : "REDEEM"}
           </button>

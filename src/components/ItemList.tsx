@@ -66,8 +66,8 @@ export default function ItemList() {
       <div className="container place-items-center w-[75vw] h-[50vh] border-4 border-red-500 rounded-3xl shoeListContainer p-5">
         {shoeList && shoeList?.length > 0 ? (
           <>
-            {shoeList?.map((shoe) => (
-              <Item item={shoe} selectItem={selectItem} />
+            {shoeList?.map((shoe, i) => (
+              <Item item={shoe} selectItem={selectItem} key={i} />
             ))}
           </>
         ) : (
