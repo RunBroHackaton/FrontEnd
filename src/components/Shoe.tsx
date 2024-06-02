@@ -12,7 +12,7 @@ export default function Shoe({
       onClick={() => {
         selectItem(item);
       }}
-      className="flex flex-row w-full mt-2 py-1 px-5 hover:bg-red-300 cursor-pointer transition-all duration-150 ease-out"
+      className="hover:text-red-500 flex flex-row w-full mt-2 py-1 px-7 hover:bg-slate-200 cursor-pointer transition-all duration-150 ease-out"
     >
       <div className="relative h-[120px] w-[150px]">
         <Image
@@ -34,8 +34,8 @@ export default function Shoe({
         <p>{`Shoe ${item[0]}`}</p>
         <p>{`Name: ${item[1]}`}</p>
         <p>{`Company: ${item[2]}`}</p>
-        <p>{`Price: ${item[4]}`}</p>
-        <p>{`RB_Factor: ${item[5]}`}</p>
+        <p>{`Price: ${Number(item[4]) / 10 ** 18}`}</p>
+        <p>{`RB_Factor: ${Number(item[5]) / 10 ** 18}`}</p>
       </div>
     </div>
   );

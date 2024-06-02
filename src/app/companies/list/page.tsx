@@ -53,11 +53,11 @@ export default function List() {
 
   //require(msg.value >= (_cost * 10)/100 + (_RB_Factor*10)/ 100, "Insufficient fee");
 
-  useEffect(() => {
-    if (!isConnected) {
-      router.push("/companies");
-    }
-  }, [isConnected]);
+  // useEffect(() => {
+  //   if (!isConnected) {
+  //     router.push("/companies");
+  //   }
+  // }, [isConnected]);
 
   return (
     <>

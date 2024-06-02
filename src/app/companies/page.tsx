@@ -62,7 +62,10 @@ export default function Companies() {
 
   useEffect(() => {
     if (isConnected) {
-      setConnectedWallet(true);
+      console.log(isConnected);
+      setTimeout(() => {
+        setConnectedWallet(true);
+      }, 1000);
     }
   }, [isConnected]);
 
@@ -80,7 +83,7 @@ export default function Companies() {
           className="flex-1 flex justify-center items-center flex-col space-y-8"
           onSubmit={handleSubmit}
         >
-          <p className="text-red-500 text-lg">
+          <p className="text-red-500 text-lg heading">
             Wallet hasn't been yet registered!
           </p>
           <p>Enter your company Details</p>

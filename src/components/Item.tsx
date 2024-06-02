@@ -13,7 +13,7 @@ export default function Item({
 
   return (
     <div
-      className="bg-black border text-white hover:bg-red-500 cursor-pointer border-white rounded-lg p-1 transition-all duration-200 ease-out"
+      className="bg-sky-200 group text-black border hover:bg-slate-950 hover:text-white cursor-pointer border-white rounded-lg p-1 transition-all duration-200 ease-out shadow-lg shadow-slate-950"
       onClick={() => {
         selectItem(item);
       }}
@@ -35,9 +35,13 @@ export default function Item({
         />
       </div>
       <div className="text-center text-xs mt-1">
-        <p className="border-b-white w-16 mx-auto border-b">Price</p>
+        <p className="border-b-black w-16 mx-auto border-b group-hover:border-b-white">
+          Price
+        </p>
         <p>{Number(item[4]) / 10 ** 18} ETH</p>
-        <p className="border-b-white w-16 mx-auto border-b">Factor</p>
+        <p className="border-b-black w-16 mx-auto border-b group-hover:border-b-white">
+          Factor
+        </p>
         <p>{Number(item[5]) / 10 ** 18}</p>
       </div>
     </div>

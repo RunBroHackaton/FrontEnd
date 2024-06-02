@@ -12,13 +12,13 @@ export default function UserDashboard() {
   const [selectedShoe, setSelectedShoe] = useState("");
 
   return (
-    <div className="flex flex-row space-x-[10vw]">
+    <div className="flex flex-row justify-evenly w-full">
       <ShoeCollection setSelectedShoe={setSelectedShoe} />
       <div className="flex flex-col justify-end mb-[5vh] space-y-6">
         <p className="text-center">
           Selected shoe {selectedShoe ? Number(selectedShoe[0]) : ""}
         </p>
-        <div className="h-[200px] w-[240px] relative border border-black flex">
+        <div className="h-[200px] w-[240px] relative border border-red-500 shadow-sm shadow-red-500 flex">
           {selectedShoe ? (
             <Image
               loader={() =>
@@ -39,16 +39,13 @@ export default function UserDashboard() {
               alt={`Shoe ${selectedShoe[0]} picture`}
             />
           ) : (
-            <p className="mx-auto my-auto text-xs">Shoe Preview</p>
+            <p className="mx-auto my-auto text-xs text-red-500">Shoe Preview</p>
           )}
         </div>
         <div>
           <p>Your Fitness Data from 1st May</p>
           <FitnessData />
         </div>
-        <Link href="/dashboard/rewards">
-          <button className="actionButton">Check rewards</button>
-        </Link>
         <button
           className="actionButton"
           onClick={() => {
@@ -57,6 +54,9 @@ export default function UserDashboard() {
         >
           Redeem steps
         </button>
+        <Link href="/dashboard/rewards">
+          <button className="actionButton">Check rewards</button>
+        </Link>
       </div>
       <RedeemModal
         showModal={showModal}

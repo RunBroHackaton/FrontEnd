@@ -15,9 +15,7 @@ export default async function Marketplace() {
 
   return (
     <div className="flex-1 flex flex-col items-center px-16 py-10 justify-evenly">
-      <p className={`heading ${lilita_one.className}`}>
-        Purchase a shoe to Run and Earn!
-      </p>
+      <p className="heading">Purchase a shoe to Run and Earn!</p>
       <ItemList />
       <Link href="/dashboard">
         <button className="actionButton">Go To Your Dashboard</button>

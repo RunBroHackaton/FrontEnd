@@ -1,3 +1,5 @@
+"use client";
+
 import { MouseEvent } from "react";
 import { useWriteContract } from "wagmi";
 import abi from "../../contract_abis/MarketPlace.json";
@@ -14,8 +16,6 @@ export default function RedeemModal({
   showModal: boolean;
   setShowModal: (bool: boolean) => void;
 }) {
-  if (!showModal) return null;
-
   const close = (e: MouseEvent<HTMLDivElement>) => {
     if ((e.target as HTMLElement).id === "modal") {
       setShowModal(false);
@@ -53,27 +53,31 @@ export default function RedeemModal({
 
   return (
     <>
-      <div
-        id="modal"
-        className="fixed inset-0 bg-opacity backdrop-blur-sm flex justify-center items-center"
-        onClick={close}
-      >
-        <div className="relative w-[700px] h-[450px] flex flex-row p-5 rounded-lg bg-black justify-around items-center">
-          <p>Time Left!</p>
-          <p>Reedem yesterday's steps for RB</p>
-          <button className="actionButton">
-            {redeemPending ? "Redeeming..." : "REDEEM"}
-          </button>
-          <div
-            className="absolute right-3 top-0 text-white text-2xl cursor-pointer"
-            onClick={() => {
-              setShowModal(false);
-            }}
-          >
-            x
+      {showModal ? (
+        <div
+          id="modal"
+          className="fixed inset-0 bg-opacity backdrop-blur-sm flex justify-center items-center"
+          onClick={close}
+        >
+          <div className="relative w-[700px] h-[450px] flex flex-row p-5 rounded-lg bg-black justify-around items-center">
+            <p>Time Left!</p>
+            <p>Reedem yesterday's steps for RB</p>
+            <button className="actionButton">
+              {redeemPending ? "Redeeming..." : "REDEEM"}
+            </button>
+            <div
+              className="absolute right-3 top-0 text-white text-2xl cursor-pointer"
+              onClick={() => {
+                setShowModal(false);
+              }}
+            >
+              x
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <></>
+      )}
       <TxPopup hash={redeemHash} status={redeemStatus} />
     </>
   );

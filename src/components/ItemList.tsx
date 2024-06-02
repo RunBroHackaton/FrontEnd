@@ -1,7 +1,7 @@
 "use client";
 
 import Item from "@/components/Item";
-import { useAccount, useReadContract, useReadContracts } from "wagmi";
+import { useBlockNumber, useReadContract, useReadContracts } from "wagmi";
 import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
 import MARKETPLACE_ABI from "../../contract_abis/MarketPlace.json";
 import { Address, Abi } from "viem";
@@ -25,10 +25,13 @@ export default function ItemList() {
     return Array.from({ length: end - start + 1 }, (v, k) => k + start);
   };
 
+  const { data: blockNumber } = useBlockNumber({ watch: true });
+
   const { data: shoeCount } = useReadContract({
     abi: MARKETPLACE_ABI,
     address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
     functionName: "s_shoeCount",
+    blockNumber: blockNumber,
   });
 
   const { data: shoeMapping } = useReadContracts({
@@ -63,7 +66,7 @@ export default function ItemList() {
 
   return (
     <>
-      <div className="container place-items-center w-[75vw] h-[50vh] border-4 border-red-500 rounded-3xl shoeListContainer p-5">
+      <div className="bg-sky-700 container place-items-center w-[75vw] h-[50vh] border-4 border-red-500 rounded-3xl shoeListContainer p-5 overflow-y-scroll">
         {shoeList && shoeList?.length > 0 ? (
           <>
             {shoeList?.map((shoe, i) => (

@@ -7,13 +7,13 @@ export default function Home() {
   return (
     <main className="flex-1 flex items-center flex-col">
       <div className="mt-[10vh] text-center">
-        <p className="text-3xl">
+        <p className="text-3xl heading">
           Get started with RunBro and earn while you run!{" "}
         </p>
-        <p className="w-[500px] text-lg mt-6 mx-auto">
+        <p className="w-[550px] text-lg mt-6 mx-auto">
           RunBro is a platform where users can buy shoes from verified sellers
           to get rewards in RB token. To use our app the user needs to download
-          and sync Google Fit app which tracks their steps.
+          and sync Google Fit app which tracks their health data.
         </p>
       </div>
       <div className="flex flex-col space-y-10 mt-[5vh]">

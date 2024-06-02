@@ -93,16 +93,10 @@ export default function FitnessData() {
 
   return (
     <>
-      <div className="flex flex-col items-center">
-        <div className="flex flex-row">
-          <p>No. of steps</p>
-          {stepsData.length ? (
-            <p>{stepsData[stepsData.length - 1].steps}</p>
-          ) : (
-            <></>
-          )}
-        </div>
-      </div>
+      <p className="text-center">
+        No. of steps{" "}
+        {stepsData.length ? stepsData[stepsData.length - 1].steps : ""}
+      </p>
     </>
   );
 }
