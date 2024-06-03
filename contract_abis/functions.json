@@ -353,6 +353,11 @@
           "name": "args",
           "type": "string[]",
           "internalType": "string[]"
+        },
+        {
+          "name": "authToken",
+          "type": "string",
+          "internalType": "string"
         }
       ],
       "outputs": [
@@ -363,19 +368,6 @@
         }
       ],
       "stateMutability": "nonpayable"
-    },
-    {
-      "type": "function",
-      "name": "source",
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "",
-          "type": "string",
-          "internalType": "string"
-        }
-      ],
-      "stateMutability": "view"
     },
     {
       "type": "function",
