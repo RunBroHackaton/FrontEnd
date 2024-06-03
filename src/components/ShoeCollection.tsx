@@ -28,10 +28,6 @@ export default function ShoeCollection({ setSelectedShoe }: any) {
     })),
   }) as { data: any };
 
-  useEffect(() => {
-    console.log(ownerShoeIds);
-  }, [ownerShoeIds]);
-
   const selectShoe = (shoe: any) => {
     setSelectedShoe(shoe);
   };

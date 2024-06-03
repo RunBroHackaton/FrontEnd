@@ -72,6 +72,7 @@ export default function Companies() {
   useEffect(() => {
     console.log("is registered", isRegistered);
     if (isRegistered) {
+      console.log("Routing to list...");
       router.push("/companies/list");
     }
   }, [isRegistered]);

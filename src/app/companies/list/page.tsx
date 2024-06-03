@@ -44,7 +44,9 @@ export default function List() {
           ethers.parseEther(factor.toString()),
           BigInt(quantity),
         ],
-        value: ethers.parseEther((price / 10 + factor / 10).toString()),
+        value: ethers.parseEther(
+          ((price / 10 + factor / 10) * quantity).toString()
+        ),
       });
     } catch (error) {
       console.log(error);
@@ -104,7 +106,9 @@ export default function List() {
             />
           </div>
         </div>
-        <p className="mt-7">Platform fee: 10%</p>
+        <p className="mt-7">
+          Platform fee: {(price / 10 + factor / 10) * quantity}ETH
+        </p>
         <button className="actionButton" onClick={handleClick}>
           {pendingList ? (
             <div className="flex justify-center items-center h-6 w-full">

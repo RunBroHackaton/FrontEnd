@@ -227,7 +227,6 @@ input::-webkit-inner-spin-button {
   background-position: 0 0;
   background-color: #43a047;
   color: #fff;
-  border-color: black;
 }
 
 .registerLogin {
@@ -249,5 +248,4 @@ input::-webkit-inner-spin-button {
   background-position: 0 0;
   background-color: #d32f2f;
   color: #fff;
-  border-color: black;
 }

@@ -1,10 +1,14 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
+import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
+import abi from "../../contract_abis/Reward.json";
+import { Address } from "viem";
+import { useReadContract } from "wagmi";
 
 // Define types for the steps data
 interface StepData {
-  steps: number;
+  stepsData: number;
   startDate: Date;
   endDate: Date;
 }
@@ -23,23 +27,38 @@ interface APIResponse {
   }>;
 }
 
-export default function FitnessData() {
-  const [stepsData, setStepsData] = useState<StepData[]>([]);
+export default function FitnessData({ steps, setSteps }: any) {
   const { data: session } = useSession();
+
+  const { data: startDayTimestamp } = useReadContract({
+    abi: abi,
+    address: CONTRACT_ADDRESSES["REWARDS"] as Address,
+    functionName: "getPreviousDayMidnightTimestamp",
+  });
+
+  const { data: endDayTimestamp } = useReadContract({
+    abi: abi,
+    address: CONTRACT_ADDRESSES["REWARDS"] as Address,
+    functionName: "getCurrentDayMidnightTimestamp",
+  });
 
   function parseStepsData(data: APIResponse): StepData[] {
     return data.bucket.map((bucket: any) => {
-      console.log(session?.accessToken); // For testing purposes
-      const steps = bucket.dataset[0].point[0]?.value[0]?.intVal || 0;
+      const stepsData = bucket.dataset[0].point[0]?.value[0]?.intVal || 0;
       const startDate = new Date(parseInt(bucket.startTimeMillis, 10));
       const endDate = new Date(parseInt(bucket.endTimeMillis, 10));
       return {
-        steps,
+        stepsData,
         startDate,
         endDate,
       };
     });
   }
+
+  useEffect(() => {
+    console.log(endDayTimestamp);
+    console.log(startDayTimestamp);
+  }, [endDayTimestamp, startDayTimestamp]);
 
   useEffect(() => {
     if (session?.accessToken) {
@@ -81,7 +100,7 @@ export default function FitnessData() {
           const data = await response.json();
           const parsedData = parseStepsData(data);
           console.log(parsedData);
-          setStepsData(parsedData);
+          setSteps(parsedData[0].stepsData);
         } catch (error) {
           console.error("Error fetching steps data:", error);
         }
@@ -93,10 +112,7 @@ export default function FitnessData() {
 
   return (
     <>
-      <p className="text-center">
-        No. of steps{" "}
-        {stepsData.length ? stepsData[stepsData.length - 1].steps : ""}
-      </p>
+      <p className="text-center">No. of steps {steps ? steps : ""}</p>
     </>
   );
 }

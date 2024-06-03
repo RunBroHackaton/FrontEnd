@@ -1,17 +1,22 @@
 "use client";
 
-import { MouseEvent } from "react";
-import { useWriteContract } from "wagmi";
-import abi from "../../contract_abis/MarketPlace.json";
+import { MouseEvent, useEffect, useState } from "react";
+import { useAccount, useWriteContract, useReadContract } from "wagmi";
+import abi from "../../contract_abis/Reward.json";
 import CONTRACT_ADDRESSES from "../constants/Addresses.json";
 import { Address } from "viem";
 import TxPopup from "./TxPopup";
+import { useSession } from "next-auth/react";
+import CircleLoading from "@/ui/CircleLoading";
+import abiSteps from "../../contract_abis/functions.json";
 
 export default function RedeemModal({
   item,
   showModal,
   setShowModal,
+  steps,
 }: {
+  steps: any;
   item: any;
   showModal: boolean;
   setShowModal: (bool: boolean) => void;
@@ -22,6 +27,12 @@ export default function RedeemModal({
     }
   };
 
+  const [fetchedSteps, setFetchedSteps] = useState(false);
+  const [fetchingData, setFetchingData] = useState(false);
+
+  const { data: session } = useSession();
+  const { address } = useAccount();
+
   const {
     status: redeemStatus,
     data: redeemHash,
@@ -29,27 +40,67 @@ export default function RedeemModal({
     writeContract: redeemSteps,
   } = useWriteContract();
 
-  const handleRedeem = () => {
-    try {
-      redeemSteps({
-        abi: abi,
-        address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
-        functionName: "",
-        args: [],
-      });
-    } catch (error) {
-      console.log(error);
+  const {
+    status: confirmStatus,
+    data: confirmHash,
+    isPending: confirmPending,
+    writeContract: confirm,
+  } = useWriteContract();
+
+  const { data: distributionTimestamp } = useReadContract({
+    abi: abiSteps,
+    address: CONTRACT_ADDRESSES["STEPSAPI"] as Address,
+    functionName: "s_distributionTimeStamp",
+  });
+
+  const handleClick = () => {
+    if (!fetchedSteps) {
+      try {
+        console.log("redeeming steps...");
+        console.log(session?.accessToken);
+        redeemSteps({
+          abi: abi,
+          address: CONTRACT_ADDRESSES["REWARDS"] as Address,
+          functionName: "sendRequestToFetchSteps",
+          args: [session?.accessToken],
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        console.log("confirming steps...");
+        confirm({
+          abi: abi,
+          address: CONTRACT_ADDRESSES["REWARDS"] as Address,
+          functionName: "recordFetchedSteps",
+          args: [address],
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
-  const getTimeLeft = async (startOfDay: any) => {
-    const endOfDay = Number(startOfDay) + 24 * 60 * 60;
+  // updaterewarddistributionTime() - getmidnightendTime()
+
+  const getTimeLeft = (day: any) => {
     const currentTimeStamp = Math.round(Date.now() / 1000);
-    const time = endOfDay - currentTimeStamp;
+    const time = Number(day) - currentTimeStamp;
     const hoursLeft = Math.floor(time / 60 / 60);
     const minutesLeft = Math.floor(time / 60) % 24;
     return `${hoursLeft} H ${minutesLeft} min`;
   };
+
+  useEffect(() => {
+    if (redeemStatus === "success") {
+      setFetchingData(true);
+      setTimeout(() => {
+        setFetchedSteps(true);
+        setFetchingData(false);
+      }, 90000);
+    }
+  }, [redeemStatus]);
 
   return (
     <>
@@ -59,12 +110,36 @@ export default function RedeemModal({
           className="fixed inset-0 bg-opacity backdrop-blur-sm flex justify-center items-center"
           onClick={close}
         >
-          <div className="relative w-[700px] h-[450px] flex flex-row p-5 rounded-lg bg-black justify-around items-center">
-            <p>Time Left!</p>
-            <p>Reedem yesterday's steps for RB</p>
-            <button className="actionButton">
-              {redeemPending ? "Redeeming..." : "REDEEM"}
-            </button>
+          <div className="relative w-[700px] h-[450px] flex flex-col p-5 rounded-lg bg-black justify-evenly items-center">
+            <p className="heading">Reedem yesterday's steps for RB</p>
+            <div>
+              <p>Time Left!</p>
+              <p>
+                {distributionTimestamp
+                  ? getTimeLeft(distributionTimestamp)
+                  : ""}
+              </p>
+            </div>
+            <p>Factor: {item[5] ? Number(item[5]) / 10 ** 18 : "0"}</p>
+            <p>steps: {steps ? steps : "0"}</p>
+            <div className="space-y-4 flex flex-col items-center justify-center">
+              <p className="h-6 text-red-500 text-center">
+                {fetchingData
+                  ? "Dont close the window, still fetching data..."
+                  : ""}
+              </p>
+              <button className="actionButton" onClick={handleClick}>
+                {redeemPending || confirmPending || fetchingData ? (
+                  <div className="flex justify-center items-center h-6 w-full">
+                    <CircleLoading />
+                  </div>
+                ) : fetchedSteps ? (
+                  "CONFIRM"
+                ) : (
+                  "REDEEM STEPS"
+                )}
+              </button>
+            </div>
             <div
               className="absolute right-3 top-0 text-white text-2xl cursor-pointer"
               onClick={() => {
@@ -79,6 +154,7 @@ export default function RedeemModal({
         <></>
       )}
       <TxPopup hash={redeemHash} status={redeemStatus} />
+      <TxPopup hash={confirmHash} status={confirmStatus} />
     </>
   );
 }

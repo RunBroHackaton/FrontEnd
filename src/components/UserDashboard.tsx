@@ -10,6 +10,7 @@ import Image from "next/image";
 export default function UserDashboard() {
   const [showModal, setShowModal] = useState(false);
   const [selectedShoe, setSelectedShoe] = useState("");
+  const [steps, setSteps] = useState(0);
 
   return (
     <div className="flex flex-row justify-evenly w-full">
@@ -44,7 +45,7 @@ export default function UserDashboard() {
         </div>
         <div>
           <p>Your Fitness Data from 1st May</p>
-          <FitnessData />
+          <FitnessData steps={steps} setSteps={setSteps} />
         </div>
         <button
           className="actionButton"
@@ -62,6 +63,7 @@ export default function UserDashboard() {
         showModal={showModal}
         setShowModal={setShowModal}
         item={selectedShoe}
+        steps={steps}
       />
     </div>
   );
