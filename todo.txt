@@ -1,3 +1,0 @@
-1. Claim rewards functionality
-2. Amount of reward
-3. Time left

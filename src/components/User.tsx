@@ -2,9 +2,8 @@
 import { signOut, useSession } from "next-auth/react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useAccount, useConnect } from "wagmi";
-import { injected } from "wagmi/connectors";
+import { useState } from "react";
+import UserLogin from "./UserLogin";
 
 export default function User() {
   const { data: session } = useSession();
@@ -12,25 +11,8 @@ export default function User() {
 
   const [logout, setLogout] = useState(false);
 
-  //   const { connect, connectors } = useConnect();
-  //   const { isConnected } = useAccount();
-
-  //   useEffect(() => {
-  //     if (
-  //       (path !== "/" || path !== "/companies") &&
-  //       !isConnected &&
-  //       connectors.length > 0
-  //     ) {
-  //       connect({ connector: injected() });
-  //     }
-  //   }, [connect, connectors, isConnected]);
-
-  //   useEffect(() => {
-  //     console.log(path);
-  //   }, [path]);
-
   return session?.user?.name && path !== "/" ? (
-    <div className="flex flex-row items-center justify-center space-x-8">
+    <div className="flex flex-row items-center justify-center space-x-8 self-end mr-[5%]">
       {!path.includes("companies") ? (
         <div
           className="w-32"
@@ -60,6 +42,6 @@ export default function User() {
       {path !== "/companies" ? <ConnectButton chainStatus="icon" /> : <></>}
     </div>
   ) : (
-    <></>
+    <UserLogin />
   );
 }

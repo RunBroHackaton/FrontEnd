@@ -22,7 +22,7 @@ export default function RootLayout({
       >
         <WagmiProvider>
           <SessionProvider>
-            <main className="min-h-screen w-full flex flex-col px-[5vh] bg-slate-950 text-white">
+            <main className="min-h-screen w-full flex flex-col bg-[#E4EBFA] text-white">
               <Header />
               {children}
             </main>
