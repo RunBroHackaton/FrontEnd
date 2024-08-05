@@ -110,18 +110,22 @@ export default function RedeemModal({
           className="fixed inset-0 bg-opacity backdrop-blur-sm flex justify-center items-center"
           onClick={close}
         >
-          <div className="relative w-[700px] h-[450px] flex flex-col p-5 rounded-lg bg-black justify-evenly items-center">
-            <p className="heading">Reedem yesterday's steps for RB</p>
+          <div className="relative w-[500px] h-[500px] flex flex-col p-5 rounded-full  justify-evenly items-center bg-[#6E94EBBF] border-4 border-[#E4EBFA]">
+            <p className="text-4xl font-black w-[320px] text-center">
+              Reedem yesterday's steps!
+            </p>
             <div>
-              <p>Time Left!</p>
-              <p>
+              <p className="text-2xl text-center">Time Left!</p>
+              <p className="text-2xl">
                 {distributionTimestamp
                   ? getTimeLeft(distributionTimestamp)
                   : ""}
               </p>
             </div>
-            <p>Factor: {item[5] ? Number(item[5]) / 10 ** 18 : "0"}</p>
-            <p>steps: {steps ? steps : "0"}</p>
+            <p className="text-2xl">
+              Factor: {item[5] ? Number(item[5]) / 10 ** 18 : "0"}
+            </p>
+            <p className="text-2xl">steps: {steps ? steps : "0"}</p>
             <div className="space-y-4 flex flex-col items-center justify-center">
               <p className="h-6 text-red-500 text-center">
                 {fetchingData

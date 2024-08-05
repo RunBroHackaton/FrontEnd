@@ -43,7 +43,7 @@ export default function ShoeCollection({ setSelectedShoe }: any) {
 
   return (
     <>
-      <div className="h-[70vh] w-[450px] flex flex-col border-[20px] border-[#FFFFFF] rounded-2xl rounded-tl-none py-2 overflow-y-scroll bg-[E4EBFA]">
+      <div className="h-[70vh] w-[450px] flex flex-col border-[20px] border-[#FFFFFF] rounded-2xl rounded-tl-none py-2 overflow-y-scroll bg-[#E4EBFA]">
         {collection && collection.length > 0 ? (
           <>
             {collection.map((shoe, i) => (
