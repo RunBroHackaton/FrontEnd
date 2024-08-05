@@ -1,5 +1,6 @@
 "use client";
 
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,9 +16,19 @@ export default function NavBar() {
           SHOP
         </p>
       </Link>
-      <Link href="/">
-        <p className={`${path.includes("") ? "font-bold" : ""}`}>VENDOR</p>
-      </Link>
+      {path.includes("dashboard") ? (
+        <div
+          onClick={() => {
+            signOut();
+          }}
+        >
+          <p className="cursor-pointer">LOGOUT</p>
+        </div>
+      ) : (
+        <Link href="/companies">
+          <p className={`${path.includes("") ? "font-bold" : ""}`}>VENDOR</p>
+        </Link>
+      )}
     </div>
   );
 }

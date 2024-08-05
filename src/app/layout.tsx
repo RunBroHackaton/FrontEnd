@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import WagmiProvider from "./wagmiProvider";
 import SessionProvider from "./sessionProvider";
-import { lilita_one, signika, nunito, asap, acme, concert } from "@/ui/Fonts";
+import { lilita_one, nunito, concert } from "@/ui/Fonts";
 
 export const metadata: Metadata = {
   title: "RunBro",
