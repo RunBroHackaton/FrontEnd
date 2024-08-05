@@ -13,8 +13,7 @@ export default async function RootLayout({
     redirect("/");
   }
   return (
-    <div className="flex-1 flex flex-row items-center bg-[#6E94EB]">
-      {/* <UserDashboard /> */}
+    <div className="flex-1 flex flex-row items-center">
       <UserNavBar />
       <div className="flex-1 w-9/12">{children}</div>
     </div>

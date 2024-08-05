@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import WagmiProvider from "./wagmiProvider";
 import SessionProvider from "./sessionProvider";
 import { lilita_one, nunito, concert } from "@/ui/Fonts";
+import Background from "@/components/Background";
 
 export const metadata: Metadata = {
   title: "RunBro",
@@ -22,10 +23,11 @@ export default function RootLayout({
       >
         <WagmiProvider>
           <SessionProvider>
-            <main className="min-h-screen w-full flex flex-col bg-[#E4EBFA] text-white">
+            <main className="min-h-screen w-full flex flex-col bg-transparent text-white relative z-10">
               <Header />
               {children}
             </main>
+            <Background />
           </SessionProvider>
         </WagmiProvider>
       </body>
