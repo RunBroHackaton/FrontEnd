@@ -66,7 +66,7 @@ export default function ItemList() {
 
   return (
     <>
-      <div className="bg-sky-700 container place-items-center w-[75vw] h-[50vh] border-4 border-red-500 rounded-3xl shoeListContainer p-5 overflow-y-scroll">
+      <div className="container place-items-center w-[60vw] h-[65vh] border-4 border-black p-5 overflow-y-scroll">
         {shoeList && shoeList?.length > 0 ? (
           <>
             {shoeList?.map((shoe, i) => (
@@ -77,11 +77,11 @@ export default function ItemList() {
           <p className="mx-auto my-auto text-xl">No shoes available!</p>
         )}
       </div>
-      <ItemModal
+      {/* <ItemModal
         item={selectedItem}
         showModal={showModal}
         setShowModal={setShowModal}
-      />
+      /> */}
     </>
   );
 }
