@@ -12,6 +12,7 @@ export default async function RootLayout({
   if (!session || !session.user) {
     redirect("/");
   }
+
   return (
     <div className="flex-1 flex flex-row items-center">
       <UserNavBar />

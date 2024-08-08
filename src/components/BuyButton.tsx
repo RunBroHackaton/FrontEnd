@@ -34,7 +34,7 @@ export default function BuyButton({ item }: { item: any }) {
   return (
     <>
       <button
-        className="text-2xl w-[180px] mx-auto h-[40px] border-black border-2 rounded-xl bg-green-400 flex justify-center items-center"
+        className="text-2xl w-[180px] mx-auto h-[40px] border-black border-2 rounded-xl bg-green-400 flex justify-center items-center hover:bg-green-500 transition-all duration-300"
         onClick={handleBuy}
         disabled={buyPending}
       >

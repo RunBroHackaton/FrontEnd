@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function Item({ item } : { item: any }) {
+export default function Item({ item }: { item: any }) {
   const router = useRouter();
 
   return (
     <div
-      className="bg-white text-black cursor-pointer p-1 transition-all duration-200 ease-out h-[250px] w-[200px] border border-gray-300/90 flex flex-col justify-around rounded-md"
+      className="bg-white text-black cursor-pointer p-1 transition-all duration-200 ease-out h-[250px] w-[200px] border border-gray-300/90 flex flex-col justify-around rounded-md hover:shadow-md shadow-gray-300"
       onClick={() => {
         router.push(`/marketplace/${item[0]}`);
       }}

@@ -1,3 +1,5 @@
+"use client";
+
 import SellerNavBar from "@/components/SellerNavBar";
 
 export default async function RootLayout({
