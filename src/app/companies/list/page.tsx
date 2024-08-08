@@ -53,18 +53,9 @@ export default function List() {
     }
   };
 
-  //require(msg.value >= (_cost * 10)/100 + (_RB_Factor*10)/ 100, "Insufficient fee");
-
-  // useEffect(() => {
-  //   if (!isConnected) {
-  //     router.push("/companies");
-  //   }
-  // }, [isConnected]);
-
   return (
     <>
-      <div className="flex-1 flex flex-col items-center px-16 py-10 justify-evenly">
-        <p className="text-center heading">List items</p>
+      <div className="flex-1 flex flex-col items-center px-16 justify-evenly border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%]">
         <div className="flex flex-row justify-evenly w-full">
           <ImageUpload cid={cid} setCid={setCid} />
           <div className="flex flex-col items-center justify-center space-y-12">
@@ -106,10 +97,13 @@ export default function List() {
             />
           </div>
         </div>
-        <p className="mt-7">
+        <p className="mt-7 text-black">
           Platform fee: {(price / 10 + factor / 10) * quantity}ETH
         </p>
-        <button className="actionButton" onClick={handleClick}>
+        <button
+          className="bg-[#EA5B46] text-white font-bold text-3xl w-[150px] h-[40px] rounded-3xl"
+          onClick={handleClick}
+        >
           {pendingList ? (
             <div className="flex justify-center items-center h-6 w-full">
               <CircleLoading />

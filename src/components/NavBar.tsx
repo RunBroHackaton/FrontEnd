@@ -9,7 +9,7 @@ export default function NavBar() {
   return (
     <div className="flex flex-row text-2xl space-x-4 ml-[20%]">
       <Link href="/about">
-        <p className={`${path.includes("about") ? "font-bold" : ""}`}>ABOUT</p>
+        <p className={`${path.includes("/about") ? "font-bold" : ""}`}>ABOUT</p>
       </Link>
       <Link href="/marketplace">
         <p className={`${path.includes("marketplace") ? "font-bold" : ""}`}>
@@ -25,8 +25,10 @@ export default function NavBar() {
           <p className="cursor-pointer">LOGOUT</p>
         </div>
       ) : (
-        <Link href="/companies">
-          <p className={`${path.includes("") ? "font-bold" : ""}`}>VENDOR</p>
+        <Link href="/companies/list">
+          <p className={`${path.includes("companies") ? "font-bold" : ""}`}>
+            VENDOR
+          </p>
         </Link>
       )}
     </div>

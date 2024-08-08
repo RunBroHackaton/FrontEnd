@@ -19,7 +19,7 @@ export default function Home() {
             Run Bro Marketplace Vendors must apply and be approved by our
             community before being listed on our platform....
           </p>
-          <Link href="/companies">
+          <Link href="/companies/register">
             <div className="loginButton registerLogin border-2 border-red-700 flex justify-center items-center">
               <p className="text-center">Register</p>
             </div>

@@ -9,7 +9,7 @@ import {
   useWriteContract,
 } from "wagmi";
 import { injected } from "wagmi/connectors";
-import abi from "../../../contract_abis/MarketPlace.json";
+import abi from "../../../../contract_abis/MarketPlace.json";
 import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
 import { Address } from "viem";
 import TxPopup from "@/components/TxPopup";

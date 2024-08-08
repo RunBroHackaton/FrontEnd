@@ -54,16 +54,16 @@ export default function ImageUpload({
         className="hidden"
       />
       <button
-        className="actionButton"
+        className="bg-[#6E94EB] w-[200px] h-[35px] text-xl text-black flex justify-center items-center rounded-2xl"
         onClick={() => {
           upload.current?.click();
         }}
         disabled={uploading}
       >
-        {uploading ? "Uploading..." : "Upload Image"}
+        {uploading ? "Uploading..." : "UPLOAD IMAGE"}
       </button>
       {cid ? (
-        <div className="w-[300px] h-[270px] relative border-red-500 border-2 shadow-sm shadow-red-500">
+        <div className="w-[378px] h-[270px] relative border-[#6E94EB] border-2 shadow-sm shadow-[#6E94EB]">
           <Image
             loader={() => `${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/${cid}`}
             src={`${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/${cid}`}
@@ -72,8 +72,8 @@ export default function ImageUpload({
           />
         </div>
       ) : (
-        <div className="w-[300px] h-[270px] border-red-500 border-2 flex">
-          <p className="text-red-500 mx-auto my-auto text-center">
+        <div className="w-[378px] h-[270px] border-[#6E94EB] border-2 flex">
+          <p className="text-[#6E94EB] mx-auto my-auto text-center">
             Image preview
           </p>
         </div>
