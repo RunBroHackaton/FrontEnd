@@ -6,16 +6,18 @@ import { lilita_one } from "@/ui/Fonts";
 import Image from "next/image";
 import NavBar from "./NavBar";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const path = usePathname();
+  const router = useRouter();
 
   return (
     <div className="flex flex-col pt-2">
       {path.includes("marketplace") ? (
         <>
           <div className="flex flex-row">
-            <div className="cursor-pointer">
+            <div className="cursor-pointer" onClick={() => router.back()}>
               <Image
                 src="/Back_arrow.png"
                 height={80}
@@ -40,7 +42,9 @@ export default function Header() {
               height={180}
               className="mr-[1%]"
             />
-            <p className="text-5xl">Marketplace</p>
+            <Link href="/marketplace">
+              <p className="text-5xl">Marketplace</p>
+            </Link>
           </div>
         </>
       ) : (

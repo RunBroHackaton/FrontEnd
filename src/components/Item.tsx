@@ -1,23 +1,14 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-export default function Item({
-  item,
-  selectItem,
-}: {
-  item: any;
-  selectItem: any;
-}) {
-  function expo(x: any, f: any) {
-    return Number.parseFloat(x).toExponential(f);
-  }
-
-  console.log(item);
+export default function Item({ item } : { item: any }) {
+  const router = useRouter();
 
   return (
     <div
       className="bg-white text-black cursor-pointer p-1 transition-all duration-200 ease-out h-[250px] w-[200px] border border-gray-300/90 flex flex-col justify-around rounded-md"
       onClick={() => {
-        selectItem(item);
+        router.push(`/marketplace/${item[0]}`);
       }}
     >
       <div className="relative h-[130px] w-[180px] border-black border-4 mx-auto">

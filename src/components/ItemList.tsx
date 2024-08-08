@@ -6,18 +6,11 @@ import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
 import MARKETPLACE_ABI from "../../contract_abis/MarketPlace.json";
 import { Address, Abi } from "viem";
 import { useEffect, useState } from "react";
-import ItemModal from "./ItemModal";
+import CircleLoading from "@/ui/CircleLoading";
 
 export default function ItemList() {
   const [shoeList, setShoeList] = useState<any[] | null>([]);
-
-  const [showModal, setShowModal] = useState(false);
-  const [selectedItem, setSelectedItem] = useState("");
-
-  const selectItem = (item: any) => {
-    setSelectedItem(item);
-    setShowModal(true);
-  };
+  const [calledContract, setCalledContract] = useState<boolean>(false);
 
   const getShoeCountArray = () => {
     const end = Number(shoeCount);
@@ -61,27 +54,30 @@ export default function ItemList() {
         return Number(item[0]) !== 0 && !shoeListData[index].result;
       });
       setShoeList(filteredResult);
+      setCalledContract(true);
     }
   }, [shoeListData]);
 
   return (
     <>
-      <div className="container place-items-center w-[60vw] h-[65vh] border-4 border-black p-5 overflow-y-scroll">
-        {shoeList && shoeList?.length > 0 ? (
-          <>
-            {shoeList?.map((shoe, i) => (
-              <Item item={shoe} selectItem={selectItem} key={i} />
-            ))}
-          </>
+      <div className="container place-items-center w-[60vw] h-[65vh] border-4 border-black p-5 overflow-y-scroll relative">
+        {calledContract ? (
+          shoeList && shoeList?.length > 0 ? (
+            <>{shoeList?.map((shoe, i) => <Item item={shoe} key={i} />)}</>
+          ) : (
+            <p className="mx-auto my-auto text-xl">No shoes available!</p>
+          )
         ) : (
-          <p className="mx-auto my-auto text-xl">No shoes available!</p>
+          <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center z-10 bg-white">
+            <div className="text-center">
+              <div className="flex justify-center items-center h-8 w-full">
+                <CircleLoading />
+              </div>
+              <p className="text-black text-2xl mt-4">Loading shoes</p>
+            </div>
+          </div>
         )}
       </div>
-      {/* <ItemModal
-        item={selectedItem}
-        showModal={showModal}
-        setShowModal={setShowModal}
-      /> */}
     </>
   );
 }
