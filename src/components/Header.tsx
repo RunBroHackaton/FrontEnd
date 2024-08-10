@@ -28,13 +28,12 @@ export default function Header() {
             <User />
           </div>
           <div className="mt-2 h-[10vh] border-y-[1vh] border-black flex rounded-sm items-center bg-[#EA5B46] text-black">
-            <Link href="/">
-              <p
-                className={`${lilita_one.className} text-6xl text-black ml-[10vw]`}
-              >
-                RunBro!
-              </p>
-            </Link>
+            <p
+              className={`${lilita_one.className} text-6xl text-black ml-[10vw]`}
+            >
+              <Link href="/">RunBro!</Link>
+            </p>
+
             <Image
               src="/RunBroLogo.png"
               alt="Run Bro Logo"

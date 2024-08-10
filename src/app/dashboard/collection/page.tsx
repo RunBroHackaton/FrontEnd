@@ -43,7 +43,7 @@ export default function Collection() {
               <p className="mx-auto my-auto text-xs text-black">Shoe Preview</p>
             )}
           </div>
-          <div>
+          <div className="text-black">
             <p>Your Fitness Data from 1st May</p>
             <FitnessData steps={steps} setSteps={setSteps} />
           </div>

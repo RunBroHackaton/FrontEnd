@@ -125,14 +125,17 @@ export default function RedeemModal({
             <p className="text-2xl">
               Factor: {item[5] ? Number(item[5]) / 10 ** 18 : "0"}
             </p>
-            <p className="text-2xl">steps: {steps ? steps : "0"}</p>
+            <p className="text-2xl">Steps: {steps ? steps : "0"}</p>
             <div className="space-y-4 flex flex-col items-center justify-center">
               <p className="h-6 text-red-500 text-center">
                 {fetchingData
                   ? "Dont close the window, still fetching data..."
                   : ""}
               </p>
-              <button className="actionButton" onClick={handleClick}>
+              <button
+                className="bg-[#EA5B46] h-[50px] w-[200px] rounded-2xl text-2xl"
+                onClick={handleClick}
+              >
                 {redeemPending || confirmPending || fetchingData ? (
                   <div className="flex justify-center items-center h-6 w-full">
                     <CircleLoading />

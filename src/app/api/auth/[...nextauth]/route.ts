@@ -77,7 +77,6 @@ const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, account }) {
       if (account) {
-        console.log(process.env.NEXTAUTH_SECRET)
         token.accessToken = account.access_token;
         if (account.expires_at) {
           token.accessTokenExpires = Date.now() + account.expires_at * 1000;
@@ -91,10 +90,13 @@ const authOptions: NextAuthOptions = {
       return refreshAccessToken(token)
     },
     async session({ session, token }) {
-      console.log(process.env.NEXTAUTH_SECRET)
       session.accessToken = token.accessToken;
       return session;
-    }
+    },
+    async redirect({ url, baseUrl }) {
+      // Redirect to a specific URL after successful login
+      return `${baseUrl}/dashboard/collection`; // Redirect to /dashboard/collection
+    },
   },
   logger: {
     error(code, metadata) {
