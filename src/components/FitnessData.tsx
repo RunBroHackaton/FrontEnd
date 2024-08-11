@@ -65,9 +65,8 @@ export default function FitnessData({ steps, setSteps }: any) {
       const fetchStepsData = async () => {
         console.log(session);
         const now = new Date();
-        const startTimeMillis =
-          now.setHours(0, 0, 0, 0) - 7 * 24 * 60 * 60 * 1000;
-        const endTimeMillis = Date.now();
+        const endTimeMillis = now.getTime(); // Current time
+        const startTimeMillis = endTimeMillis - 24 * 60 * 60 * 1000; // 24 hours ago
 
         try {
           const response = await fetch(

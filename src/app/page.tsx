@@ -16,7 +16,7 @@ export default function Home() {
             height={500}
           />
           <p className="max-w-[400px] text-xl px-[10px]">
-            Run Bro Marketplace Vendors must apply and be approved by our
+            RunBro Marketplace Vendors must apply and be approved by our
             community before being listed on our platform....
           </p>
           <Link href="/companies/register">
@@ -28,13 +28,13 @@ export default function Home() {
         <div className="w-[65%] flex flex-col justify-evenly">
           <div className="flex flex-row items-center justify-evenly">
             <p className="text-lg max-w-[600px] px-[10px]">
-              RunBRO lets you use the Google Fit App on your phone to connect to
-              your crypto wallet on any laptop browser except Safari. RunBRO is
+              RunBro lets you use the Google Fit App on your phone to connect to
+              your crypto wallet on any laptop browser except Safari. RunBro is
               a D’app on the ETH platform. Once you log in via the gmail account
               connected to your Google Fit data, you will be in your RunBro
               Dashboard where you track the steps you run, walk or trod and earn
               ETH thru our daily token conversion... With more ETH in your
-              Wallet, you can buy items from the RunBRO Marketplace. There you
+              Wallet, you can buy items from the RunBro Marketplace. There you
               will find the best running gear from our community approved
               vendors, who will include big brands and new emerging companies
               from around the world!
