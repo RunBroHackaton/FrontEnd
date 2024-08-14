@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 export default function Shoe({
@@ -12,7 +14,7 @@ export default function Shoe({
       onClick={() => {
         selectItem(item);
       }}
-      className="text-black flex flex-row w-full mt-2 py-1 px-7 cursor-pointer transition-all duration-150 ease-out"
+      className="text-black flex flex-row w-full mt-2 py-1 px-7 cursor-pointer transition-all duration-150 ease-out hover:bg-gray-400"
     >
       <div className="relative h-[120px] w-[150px] border-[#6E94EB80] border-[5px]">
         <Image

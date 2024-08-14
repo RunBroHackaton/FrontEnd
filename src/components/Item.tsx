@@ -1,7 +1,13 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function Item({ item }: { item: any }) {
+export default function Item({
+  item,
+  usdPrice,
+}: {
+  item: any;
+  usdPrice: number;
+}) {
   const router = useRouter();
 
   return (
@@ -32,6 +38,11 @@ export default function Item({ item }: { item: any }) {
           {item[1]} {item[2]}
         </p>
         <p className="text-base font-bold">{Number(item[4]) / 10 ** 18} WETH</p>
+        <p className="text-sm text-gray-500">
+          <span className="text-xs">≈</span>{" "}
+          {((Number(item[4]) / 10 ** 18) * usdPrice).toFixed(2)}
+          {"$"}
+        </p>
       </div>
     </div>
   );

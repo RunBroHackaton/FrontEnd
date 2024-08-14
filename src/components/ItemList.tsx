@@ -7,9 +7,12 @@ import MARKETPLACE_ABI from "../../contract_abis/MarketPlace.json";
 import { Address, Abi } from "viem";
 import { useEffect, useState } from "react";
 import CircleLoading from "@/ui/CircleLoading";
+const Moralis = require("moralis").default;
+const { EvmChain } = require("@moralisweb3/common-evm-utils");
 
 export default function ItemList() {
   const [shoeList, setShoeList] = useState<any[] | null>([]);
+  const [ethUsdPrice, setEthUsdPrice] = useState("");
   const [calledContract, setCalledContract] = useState<boolean>(false);
 
   const getShoeCountArray = () => {
@@ -58,12 +61,35 @@ export default function ItemList() {
     }
   }, [shoeListData]);
 
+  const returnPrice = async () => {
+    console.log("FETCHING THE PRICE");
+    try {
+      const res = await fetch("/api/ethPrice");
+      if (!res.ok) {
+        throw new Error("Failed to fetch data from API");
+      }
+      const resData = await res.json();
+      console.log(resData);
+      setEthUsdPrice(resData.price);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    returnPrice();
+  }, []);
+
   return (
     <>
       <div className="container place-items-center w-[60vw] h-[65vh] border-4 border-black p-5 overflow-y-scroll relative">
         {calledContract ? (
           shoeList && shoeList?.length > 0 ? (
-            <>{shoeList?.map((shoe, i) => <Item item={shoe} key={i} />)}</>
+            <>
+              {shoeList?.map((shoe, i) => (
+                <Item item={shoe} usdPrice={Number(ethUsdPrice)} key={i} />
+              ))}
+            </>
           ) : (
             <p className="mx-auto my-auto text-xl">No shoes available!</p>
           )
