@@ -57,6 +57,8 @@ input::-webkit-inner-spin-button {
   z-index: 1;
   background-color: #e4ebfa;
   color: black;
+  position: relative;
+  font-size: 14px;
 }
 
 .input-label {
@@ -78,17 +80,25 @@ input::-webkit-inner-spin-button {
 }
 
 .input-label-focus {
-  transform: translateY(-18px);
+  transform: translateY(-12px);
   font-size: 14px;
   left: 15px;
   color: #6e94eb;
+  height: 14px;
+  display: flex;
+  justify: center;
+  align-items: center;
 }
 
 .input-label-focus-none {
-  transform: translateY(-18px);
+  transform: translateY(-12px);
   font-size: 14px;
   left: 15px;
   color: #6e94eb90;
+  height: 14px;
+  display: flex;
+  justify: center;
+  align-items: center;
 }
 
 .outer {
