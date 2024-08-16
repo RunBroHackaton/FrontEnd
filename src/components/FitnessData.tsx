@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
-import abi from "../../contract_abis/Reward.json";
+import abi from "../../contract_abis/WethReward.json";
 import { Address } from "viem";
 import { useReadContract } from "wagmi";
 

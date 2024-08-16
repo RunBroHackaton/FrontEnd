@@ -2,13 +2,13 @@
 
 import { MouseEvent, useEffect, useState } from "react";
 import { useAccount, useWriteContract, useReadContract } from "wagmi";
-import abi from "../../contract_abis/Reward.json";
+import abi from "../../contract_abis/WethReward.json";
 import CONTRACT_ADDRESSES from "../constants/Addresses.json";
 import { Address } from "viem";
 import TxPopup from "./TxPopup";
 import { useSession } from "next-auth/react";
 import CircleLoading from "@/ui/CircleLoading";
-import abiSteps from "../../contract_abis/functions.json";
+import abiSteps from "../../contract_abis/GetStepsAPI.json";
 
 export default function RedeemModal({
   item,
@@ -81,8 +81,6 @@ export default function RedeemModal({
       }
     }
   };
-
-  // updaterewarddistributionTime() - getmidnightendTime()
 
   const getTimeLeft = (day: any) => {
     const currentTimeStamp = Math.round(Date.now() / 1000);

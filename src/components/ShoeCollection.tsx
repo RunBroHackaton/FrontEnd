@@ -33,6 +33,7 @@ export default function ShoeCollection({ setSelectedShoe }: any) {
   };
 
   useEffect(() => {
+    console.log(shoes);
     if (shoes) {
       let shoeArray = shoes.map((shoe: any) => {
         return shoe.result;
