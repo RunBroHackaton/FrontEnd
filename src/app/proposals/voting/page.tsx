@@ -59,7 +59,7 @@ export default function Proposals() {
       <div className="flex-1 flex w-full flex-col justify-evenly">
         <div className="w-full h-[20%]">
           <p className="text-3xl text-black font-bold text-center">
-            ACTIVE VENDOR PROPOSALS
+            VOTING SECTION
           </p>
         </div>
         <div className="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-[10px] py-[2%] px-[3vw] w-[85vw] overflow-y-scroll h-[60vh] border-gray-300 border mx-auto">

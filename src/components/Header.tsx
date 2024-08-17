@@ -58,7 +58,7 @@ export default function Header() {
               className="mr-[1%]"
             />
             <Link href="/">
-              <p className={`${lilita_one.className} text-6xl text-white`}>
+              <p className={`${lilita_one.className} text-6xl text-black`}>
                 RunBro !
               </p>
             </Link>

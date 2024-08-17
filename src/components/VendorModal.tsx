@@ -1,14 +1,7 @@
 "use client";
 
-import { MouseEvent, useEffect, useState } from "react";
-import { useAccount, useWriteContract, useReadContract } from "wagmi";
-import abi from "../../contract_abis/Reward.json";
-import CONTRACT_ADDRESSES from "../constants/Addresses.json";
+import { MouseEvent } from "react";
 import { Address } from "viem";
-import TxPopup from "./TxPopup";
-import { useSession } from "next-auth/react";
-import CircleLoading from "@/ui/CircleLoading";
-import abiSteps from "../../contract_abis/functions.json";
 
 export default function VendorModal({
   showModal,
@@ -17,7 +10,7 @@ export default function VendorModal({
 }: {
   showModal: boolean;
   handleCloseModal: () => void;
-  item: { brand: string; description: string };
+  item: { account: Address; brand: string; description: string };
 }) {
   const close = (e: MouseEvent<HTMLDivElement>) => {
     if ((e.target as HTMLElement).id === "modal") {
@@ -39,7 +32,8 @@ export default function VendorModal({
                 {item.brand.toUpperCase()}
               </p>
             </div>
-            <div className="h-5/6">
+            <div className="h-5/6 flex flex-col items-center space-y-5">
+              <p className="text-xl">{item.account}</p>
               <p className="text-2xl">{item.description}</p>
             </div>
             <div

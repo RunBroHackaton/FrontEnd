@@ -10,8 +10,9 @@ import {
 } from "wagmi";
 import { injected } from "wagmi/connectors";
 import abi from "../../../../contract_abis/MarketPlace.json";
+import kycAbi from "../../../../contract_abis/KYC.json";
 import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
-import { Address } from "viem";
+import { Abi, Address } from "viem";
 import TxPopup from "@/components/TxPopup";
 
 export default function Companies() {
@@ -30,13 +31,6 @@ export default function Companies() {
   });
 
   const {
-    status: registerStatus,
-    data: registerHash,
-    isPending: registerPending,
-    writeContract: registerWallet,
-  } = useWriteContract();
-
-  const {
     status: detailsStatus,
     data: detailsHash,
     isPending: detailsPending,
@@ -44,19 +38,23 @@ export default function Companies() {
   } = useWriteContract();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    console.log("Submiting the form");
     e.preventDefault();
     try {
-      registerWallet({
-        abi: abi,
-        address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
-        functionName: "SellerRegisteration",
-        args: [],
-      });
+      // registerWallet({
+      //   abi: abi,
+      //   address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
+      //   functionName: "SellerRegisteration",
+      //   args: [],
+      // });
+      console.log("HERE!");
+      console.log(kycAbi);
+      console.log(CONTRACT_ADDRESSES["KYC"]);
       addDetails({
-        abi: abi,
+        abi: kycAbi,
         address: CONTRACT_ADDRESSES["KYC"] as Address,
         functionName: "addDetails",
-        args: [{ Brand: name, Decription: description }],
+        args: [JSON.stringify({ Brand: name, Description: description })],
       });
     } catch (error) {
       console.log(error);
@@ -104,12 +102,12 @@ export default function Companies() {
           />
           <input
             type="submit"
-            value={registerPending ? "REGISTERING..." : "REGISTER"}
+            value={detailsPending ? "REGISTERING..." : "REGISTER"}
             className="bg-blue-500 text-white h-[50px] w-[250px] cursor-pointer rounded-2xl hover:bg-blue-600"
           />
         </form>
       )}
-      <TxPopup hash={registerHash} status={registerStatus} />
+      <TxPopup hash={detailsHash} status={detailsStatus} />
     </>
   );
 }

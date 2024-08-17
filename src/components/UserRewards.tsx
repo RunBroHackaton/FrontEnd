@@ -37,7 +37,6 @@ export default function UserRewards() {
       <button className="border-[6px] border-[#FF007A] bg-[#D9D9D9] text-2xl text-black rounded-full py-1 px-3">
         CLAIM REWARDS
       </button>
-      {/* <Convert /> */}
     </>
   );
 }
