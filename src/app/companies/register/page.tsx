@@ -2,17 +2,11 @@
 import PrettyInput from "@/ui/PrettyInput";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, FormEvent } from "react";
-import {
-  useConnect,
-  useAccount,
-  useReadContract,
-  useWriteContract,
-} from "wagmi";
-import { injected } from "wagmi/connectors";
+import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import abi from "../../../../contract_abis/MarketPlace.json";
 import kycAbi from "../../../../contract_abis/KYC.json";
 import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
-import { Abi, Address } from "viem";
+import { Address } from "viem";
 import TxPopup from "@/components/TxPopup";
 
 export default function Companies() {
@@ -41,15 +35,6 @@ export default function Companies() {
     console.log("Submiting the form");
     e.preventDefault();
     try {
-      // registerWallet({
-      //   abi: abi,
-      //   address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
-      //   functionName: "SellerRegisteration",
-      //   args: [],
-      // });
-      console.log("HERE!");
-      console.log(kycAbi);
-      console.log(CONTRACT_ADDRESSES["KYC"]);
       addDetails({
         abi: kycAbi,
         address: CONTRACT_ADDRESSES["KYC"] as Address,

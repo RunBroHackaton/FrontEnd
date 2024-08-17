@@ -1,7 +1,7 @@
 "use client";
 
 import { useWriteContract } from "wagmi";
-import abi from "../../contract_abis/RBGovernor.json";
+import abi from "../../contract_abis/KYC.json";
 import CONTRACT_ADDRESSES from "../constants/Addresses.json";
 import { Abi, Address } from "viem";
 import TxPopup from "./TxPopup";
@@ -17,9 +17,11 @@ export default function Proposal({
   brand: string;
   description: string;
   handleShowModal: ({
+    account,
     brand,
     description,
   }: {
+    account: Address;
     brand: string;
     description: string;
   }) => void;
@@ -35,7 +37,7 @@ export default function Proposal({
     try {
       castVote({
         abi: abi,
-        address: CONTRACT_ADDRESSES["GOVERNOR"] as Address,
+        address: CONTRACT_ADDRESSES["KYC"] as Address,
         functionName: "castVote",
         args: [0, side],
       });
@@ -47,8 +49,12 @@ export default function Proposal({
   return (
     <>
       <div className="h-[200px] w-[300px] text-black text-center border-gray-400 border rounded-xl drop-shadow-lg bg-cyan-100">
-        <div className="h-2/6 flex">
-          <p className="text-xl mx-auto my-auto">{brand}</p>
+        <div className="h-2/6 flex flex-col items-center">
+          <p className="text-xl">{brand}</p>
+          <p className="text-sm">
+            {account.substring(0, 20)}
+            {"..."}
+          </p>{" "}
         </div>
         <div className="h-2/6 px-[10%]">
           <p className="text-base text-center">
@@ -58,7 +64,7 @@ export default function Proposal({
           <p
             className="text-blue-400 underline text-sm cursor-pointer"
             onClick={() => {
-              handleShowModal({ brand, description });
+              handleShowModal({ account, brand, description });
             }}
           >
             Read more

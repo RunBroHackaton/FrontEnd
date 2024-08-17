@@ -81,7 +81,9 @@ export default function Proposals() {
             ))}
           </div>
         ) : (
-          <div className="h-[60vh] w-ffull"></div>
+          <div className="h-[60vh] w-full flex justify-center items-center text-3xl text-black">
+            No proposals
+          </div>
         )}
       </div>
       <VendorModal
