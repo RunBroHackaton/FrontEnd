@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import SellerPageOption from "./SellerPage";
+import SellerPageOption from "./SellerPageOption";
 import { useRouter } from "next/navigation";
 
 export default function SellerNavBar() {
