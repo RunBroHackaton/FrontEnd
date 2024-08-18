@@ -16,6 +16,11 @@ export default function NavBar() {
           SHOP
         </p>
       </Link>
+      <Link href="/proposals">
+        <p className={`${path.includes("proposals") ? "font-bold" : ""}`}>
+          VOTE
+        </p>
+      </Link>
       {path.includes("dashboard") ? (
         <div
           onClick={() => {

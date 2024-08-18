@@ -5,6 +5,7 @@ import WagmiProvider from "./wagmiProvider";
 import SessionProvider from "./sessionProvider";
 import { lilita_one, nunito, concert } from "@/ui/Fonts";
 import Background from "@/components/Background";
+import ChatAI from "@/components/ChatAI";
 
 export const metadata: Metadata = {
   title: "RunBro",
@@ -26,6 +27,7 @@ export default function RootLayout({
             <main className="min-h-screen w-full flex flex-col bg-transparent text-white relative z-10">
               <Header />
               {children}
+              <ChatAI />
             </main>
             <Background />
           </SessionProvider>

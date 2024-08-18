@@ -40,7 +40,7 @@ export default function ProposalRequest({
       propose({
         abi: abi,
         address: CONTRACT_ADDRESSES["KYC"] as Address,
-        functionName: "propose",
+        functionName: "proposeUser",
         args: [],
       });
     } catch (error) {
@@ -82,7 +82,7 @@ export default function ProposalRequest({
               {proposePending ? "Proposing..." : "Propose"}
             </button>
           ) : (
-            <></>
+            <p className="text-gray-400">In queue</p>
           )}
         </div>
       </div>

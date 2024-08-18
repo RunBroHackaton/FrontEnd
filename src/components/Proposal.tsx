@@ -8,11 +8,13 @@ import TxPopup from "./TxPopup";
 import CircleLoading from "@/ui/CircleLoading";
 
 export default function Proposal({
+  proposalId,
   account,
   brand,
   description,
   handleShowModal,
 }: {
+  proposalId: BigInt;
   account: Address;
   brand: string;
   description: string;
@@ -33,13 +35,13 @@ export default function Proposal({
     writeContract: castVote,
   } = useWriteContract();
 
-  const handleVote = (side: number) => {
+  const handleVote = (side: boolean) => {
     try {
       castVote({
         abi: abi,
         address: CONTRACT_ADDRESSES["KYC"] as Address,
         functionName: "castVote",
-        args: [0, side],
+        args: [proposalId.toString(), side.toString()],
       });
     } catch (error) {
       console.log(error);
@@ -73,13 +75,13 @@ export default function Proposal({
         <div className="h-2/6 flex flex-row space-x-5 justify-center items-center w-full">
           <button
             className="bg-red-500 text-white px-3 py-1 rounded-xl transition-all duration-200 active:translate-y-1 active:scale-95"
-            onClick={() => handleVote(1)}
+            onClick={() => handleVote(false)}
           >
             NO
           </button>
           <button
             className="bg-green-500 text-white px-3 py-1 rounded-xl transition-all duration-200 active:translate-y-1 active:scale-95"
-            onClick={() => handleVote(1)}
+            onClick={() => handleVote(true)}
           >
             YES
           </button>

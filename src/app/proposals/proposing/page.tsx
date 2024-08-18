@@ -12,7 +12,7 @@ export default function Proposals() {
   const [showModal, setShowModal] = useState(false);
   const [chosenProposal, setChosenProposal] = useState<any>("");
 
-  const [proposals, setProposals] = useState<any[]>();
+  const [proposals, setProposals] = useState<any[]>([]);
 
   const handleShowModal = (proposal: {
     account: Address;
@@ -35,6 +35,13 @@ export default function Proposals() {
     args: [],
   }) as { data: Address[] | undefined };
 
+  const { data: proposedAddresses } = useReadContract({
+    abi: abi,
+    address: CONTRACT_ADDRESSES["KYC"] as Address,
+    functionName: "getAllProposedAccounts",
+    args: [],
+  }) as { data: Address[] | undefined };
+
   const { data: proposeDetails } = useReadContracts({
     contracts: (addresses ?? []).map((address: Address) => ({
       abi: abi as Abi,
@@ -44,20 +51,39 @@ export default function Proposals() {
     })),
   }) as { data: any };
 
+  function tryParseJSON(item: any) {
+    try {
+      return JSON.parse(item);
+    } catch (e) {
+      return item;
+    }
+  }
+
   useEffect(() => {
-    if (proposeDetails?.length > 0 && addresses) {
+    if (proposeDetails?.length > 0 && addresses && proposedAddresses) {
       let newArray: any[] = [];
       proposeDetails.forEach((details: any, i: number) => {
-        let parsedDetails = JSON.parse(details.result);
-        newArray.push({
-          account: addresses[i],
-          brand: parsedDetails.Brand,
-          description: parsedDetails.Description,
-        });
+        if (i > proposedAddresses.length) {
+          let item = tryParseJSON(details.result);
+          if (item.Brand && item.Description) {
+            let parsedDetails = JSON.parse(details.result);
+            newArray.push({
+              account: addresses[i],
+              brand: parsedDetails.Brand,
+              description: parsedDetails.Description,
+            });
+          } else {
+            newArray.push({
+              account: addresses[i],
+              brand: "Unknown brand",
+              description: details.result,
+            });
+          }
+        }
       });
       setProposals(newArray);
     }
-  }, [proposeDetails]);
+  }, [proposeDetails, proposedAddresses]);
 
   return (
     <>
@@ -67,7 +93,7 @@ export default function Proposals() {
             PROPOSE SECTION
           </p>
         </div>
-        {proposals ? (
+        {proposals?.length > 0 ? (
           <div className="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-[10px] py-[2%] px-[3vw] w-[85vw] overflow-y-scroll h-[60vh] border-gray-300 border mx-auto">
             {proposals.map((proposal, i) => (
               <ProposalRequest

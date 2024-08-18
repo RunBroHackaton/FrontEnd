@@ -12,7 +12,7 @@ export default function Proposals() {
   const [showModal, setShowModal] = useState(false);
   const [chosenProposal, setChosenProposal] = useState<any>("");
 
-  const [proposals, setProposals] = useState<any[]>();
+  const [proposals, setProposals] = useState<any[]>([]);
 
   const handleShowModal = (proposal: {
     account: Address;
@@ -28,11 +28,6 @@ export default function Proposals() {
     setShowModal(false);
   };
 
-  // [address]
-  // [proposalId]
-  // [details]
-  // [status]
-  // keep only those with status 1
   const { data: addresses } = useReadContract({
     abi: abi,
     address: CONTRACT_ADDRESSES["KYC"] as Address,
@@ -53,7 +48,7 @@ export default function Proposals() {
     contracts: (proposalIds ?? []).map((proposalId: any) => ({
       abi: abi as Abi,
       address: CONTRACT_ADDRESSES["KYC"] as Address,
-      functionName: "checkVotingStatus",
+      functionName: "getVotingStatus",
       args: [proposalId.result],
     })),
   }) as { data: any };
@@ -67,22 +62,51 @@ export default function Proposals() {
     })),
   }) as { data: any };
 
+  function tryParseJSON(item: any) {
+    try {
+      return JSON.parse(item);
+    } catch (e) {
+      return item;
+    }
+  }
+
   useEffect(() => {
-    if (proposeDetails?.length > 0 && addresses && proposalStatus) {
+    if (
+      proposeDetails?.length > 0 &&
+      addresses &&
+      proposalStatus &&
+      proposalIds
+    ) {
       let newArray: any[] = [];
       proposeDetails.forEach((details: any, i: number) => {
-        if (proposalStatus[i].result == 1) {
-          let parsedDetails = JSON.parse(details.result);
-          newArray.push({
-            account: addresses[i],
-            brand: parsedDetails.Brand,
-            description: parsedDetails.Description,
-          });
+        if (proposalStatus[i].result[2]) {
+          let item = tryParseJSON(details.result);
+          if (item.Brand && item.Description) {
+            let parsedDetails = JSON.parse(details.result);
+            const isDuplicate = newArray.some(
+              (proposal) => proposal.brand === parsedDetails.Brand
+            );
+            if (!isDuplicate) {
+              newArray.push({
+                proposalId: proposalIds[i].result,
+                account: addresses[i],
+                brand: parsedDetails.Brand,
+                description: parsedDetails.Description,
+              });
+            }
+          } else {
+            newArray.push({
+              proposalId: proposalIds[i],
+              account: addresses[i],
+              brand: "Unknown brand",
+              description: details.result,
+            });
+          }
         }
       });
       setProposals(newArray);
     }
-  }, [proposeDetails]);
+  }, [proposalStatus, proposeDetails]);
 
   return (
     <>
@@ -92,25 +116,24 @@ export default function Proposals() {
             VOTING SECTION
           </p>
         </div>
-        <div className="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-[10px] py-[2%] px-[3vw] w-[85vw] overflow-y-scroll h-[60vh] border-gray-300 border mx-auto">
-          {proposals ? (
-            <div className="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-[10px] py-[2%] px-[3vw] w-[85vw] overflow-y-scroll h-[60vh] border-gray-300 border mx-auto">
-              {proposals.map((proposal, i) => (
-                <Proposal
-                  account={"0xFSDCS"}
-                  brand={proposal.brand}
-                  description={proposal.description}
-                  handleShowModal={handleShowModal}
-                  key={i}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="h-[60vh] w-full flex justify-center items-center text-3xl text-black">
-              No proposals
-            </div>
-          )}
-        </div>
+        {proposals?.length ? (
+          <div className="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-[10px] py-[2%] px-[3vw] w-[85vw] overflow-y-scroll h-[60vh] border-gray-300 border mx-auto">
+            {proposals.map((proposal, i) => (
+              <Proposal
+                proposalId={proposal.proposalId}
+                account={proposal.account}
+                brand={proposal.brand}
+                description={proposal.description}
+                handleShowModal={handleShowModal}
+                key={i}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="h-[60vh] w-full flex justify-center items-center text-3xl text-black">
+            No proposals
+          </div>
+        )}
       </div>
       <VendorModal
         showModal={showModal}
