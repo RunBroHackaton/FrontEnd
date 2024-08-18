@@ -27,7 +27,7 @@ export default function Header() {
             </div>
             <User />
           </div>
-          <div className="mt-2 h-[10vh] border-y-[1vh] border-black flex rounded-sm items-center bg-[#EA5B46] text-black">
+          <div className="mt-2 h-[10vh] border-y-[1vh] border-black flex rounded-sm items-center bg-[#EA5B46] text-black drop-shadow-lg">
             <p
               className={`${lilita_one.className} text-6xl text-black ml-[10vw]`}
             >
@@ -49,7 +49,7 @@ export default function Header() {
       ) : (
         <>
           <User />
-          <div className="mt-2 h-[10vh] flex justify-center rounded-sm items-center bg-[#FFD449]">
+          <div className="mt-2 h-[10vh] flex justify-center rounded-sm items-center bg-[#FFD449] drop-shadow-lg">
             <Image
               src="/RunBroLogo.png"
               alt="Run Bro Logo"

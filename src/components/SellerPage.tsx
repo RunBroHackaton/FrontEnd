@@ -14,9 +14,9 @@ export default function SellerPageOption({
   return (
     <Link href={`/companies/${href}`}>
       <div
-        className={`h-[40px] w-[200px] border-[4px] border-[#6E94EB] text-black rounded-2xl cursor-pointer transition-all duration-300 ease-out ${path == `/companies/${href}` ? "bg-[#EA5B46BF]" : "hover:bg-[#ea5c4685]"}`}
+        className={`h-[55px] w-[240px] border-[4px] border-[#6E94EB] text-black rounded-3xl cursor-pointer transition-all duration-300 ease-out ${path == `/companies/${href}` ? "bg-[#EA5B46BF]" : "hover:bg-[#ea5c4685]"} flex`}
       >
-        <p className="text-2xl text-center">{name}</p>
+        <p className="text-3xl text-center mx-auto my-auto">{name}</p>
       </div>
     </Link>
   );

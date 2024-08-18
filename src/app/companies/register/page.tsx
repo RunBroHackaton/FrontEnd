@@ -57,12 +57,12 @@ export default function Companies() {
   return (
     <>
       {isRegistered ? (
-        <div className="flex-1 flex flex-col justify-center items-center">
+        <div className="flex-1 flex flex-col items-center px-16 justify-evenly border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%] w-10/12">
           <p className="text-2xl text-blue-500">Wallet already registered!</p>
         </div>
       ) : (
         <form
-          className="flex-1 flex justify-center items-center flex-col space-y-8"
+          className="flex-1 flex flex-col items-center px-16 justify-evenly border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%] space-y-8 w-10/12"
           onSubmit={handleSubmit}
         >
           <p className="text-blue-500 text-3xl font-black">
