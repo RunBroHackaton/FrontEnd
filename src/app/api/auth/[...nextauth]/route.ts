@@ -95,7 +95,7 @@ const authOptions: NextAuthOptions = {
     },
     async redirect({ url, baseUrl }) {
       // Redirect to a specific URL after successful login
-      return `${baseUrl}/dashboard/collection`; // Redirect to /dashboard/collection
+      return `${baseUrl}/dashboard/rewards`; // Redirect to /dashboard/rewards
     },
   },
   logger: {

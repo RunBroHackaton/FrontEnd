@@ -113,7 +113,7 @@ export default function FitnessData({ steps, setSteps, setTimestamp }: any) {
 
   return (
     <>
-      <p className="text-center">No. of steps {steps ? steps : ""}</p>
+      <p className="text-center text-3xl">No. of steps {steps ? steps : ""}</p>
     </>
   );
 }

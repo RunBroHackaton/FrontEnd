@@ -18,9 +18,9 @@ export default function UserNavBar() {
       >
         <Image src="/Back_Button.png" alt="Back button" fill />
       </div>
-      <UserPageOption name="My Collection" href="collection" />
-      <UserPageOption name="My Wishlist" href="wishlist" />
       <UserPageOption name="My Rewards" href="rewards" />
+      <UserPageOption name="My Steps" href="steps" />
+      <UserPageOption name="My Wishlist" href="wishlist" />
       <UserPageOption name="Shipping Info" href="shipping" />
       <UserPageOption name="My Orders" href="orders" />
       <div className="text-white text-2xl font-extralight">DASHBOARD</div>
