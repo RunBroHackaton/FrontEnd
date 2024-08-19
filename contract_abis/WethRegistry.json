@@ -1,5 +1,10 @@
 [
   {
+    "type": "constructor",
+    "inputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
     "type": "function",
     "name": "MAX_USERS_PER_SLOT",
     "inputs": [],
@@ -152,6 +157,19 @@
   },
   {
     "type": "function",
+    "name": "_loadWethReward",
+    "inputs": [
+      {
+        "name": "_wethReward",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "_updateReserveBalance",
     "inputs": [
       {
@@ -203,6 +221,32 @@
         "name": "",
         "type": "address",
         "internalType": "contract MarketPlace"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "i_wethReward",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract WethReward"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "owner",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
       }
     ],
     "stateMutability": "view"

@@ -7,8 +7,6 @@ import MARKETPLACE_ABI from "../../contract_abis/MarketPlace.json";
 import { Address, Abi } from "viem";
 import { useEffect, useState } from "react";
 import CircleLoading from "@/ui/CircleLoading";
-const Moralis = require("moralis").default;
-const { EvmChain } = require("@moralisweb3/common-evm-utils");
 
 export default function ItemList() {
   const [shoeList, setShoeList] = useState<any[] | null>([]);

@@ -3,9 +3,9 @@
 import ShoeCollection from "@/components/ShoeCollection";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Address } from "viem";
-import { useAccount, useWriteContract } from "wagmi";
+import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import abi from "../../../../contract_abis/WethReward.json";
 import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
 import TxPopup from "@/components/TxPopup";
@@ -53,6 +53,13 @@ export default function Rewards() {
     isPending: claimPending,
     writeContract: claimRewards,
   } = useWriteContract();
+
+  const { data: rewards } = useReadContract({
+    abi: abi,
+    address: CONTRACT_ADDRESSES["REWARDS"] as Address,
+    functionName: "_calculateRewardOfUserSteps",
+    args: [address, Number(selectedShoe[0])],
+  }) as { data: bigint[] | undefined };
 
   const handleClaim = () => {
     console.log("Claiming");
@@ -103,7 +110,7 @@ export default function Rewards() {
             </div>
             <div className="text-black text-lg text-center">
               <p>REWARDS AVAILABLE TO CLAIM:</p>
-              <p>0</p>
+              <p>{rewards ? Number(rewards) / 10 ** 18 : "0"} WETH</p>
             </div>
             <button
               className="bg-[#E4EBFA] border-[8px] border-[#FF007A] rounded-3xl text-black w-[250px] h-[55px] text-2xl"

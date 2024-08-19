@@ -177,25 +177,6 @@
   },
   {
     "type": "function",
-    "name": "getNext6PM",
-    "inputs": [
-      {
-        "name": "timestamp",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "stateMutability": "pure"
-  },
-  {
-    "type": "function",
     "name": "getPreviousDayMidnightTimestamp",
     "inputs": [],
     "outputs": [
@@ -308,19 +289,6 @@
   {
     "type": "function",
     "name": "s_contractCreationTime",
-    "inputs": [],
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
-    "name": "s_distributionTimeStamp",
     "inputs": [],
     "outputs": [
       {
@@ -470,13 +438,6 @@
         "internalType": "address"
       }
     ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  },
-  {
-    "type": "function",
-    "name": "updateRewardDistributionTime",
-    "inputs": [],
     "outputs": [],
     "stateMutability": "nonpayable"
   },
