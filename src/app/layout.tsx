@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import WagmiProvider from "./wagmiProvider";
 import SessionProvider from "./sessionProvider";
-import { lilita_one, nunito, concert } from "@/ui/Fonts";
+import { lilita_one, nunito, concert, inter } from "@/ui/Fonts";
 import Background from "@/components/Background";
 import ChatAI from "@/components/ChatAI";
 
@@ -18,9 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${lilita_one.variable} ${nunito.className} ${concert.variable}`}
-      >
+      <body className={`${inter.className}`}>
         <WagmiProvider>
           <SessionProvider>
             <main className="min-h-screen w-full flex flex-col bg-transparent text-white relative z-10">
