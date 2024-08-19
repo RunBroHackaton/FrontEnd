@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { injected } from "wagmi/connectors";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import KYCabi from "../../../contract_abis/KYC.json";
 
 export default function RootLayout({
   children,
@@ -22,10 +23,10 @@ export default function RootLayout({
   const path = usePathname();
 
   const { data: isRegistered } = useReadContract({
-    abi: abi,
-    address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
+    abi: KYCabi,
+    address: CONTRACT_ADDRESSES["KYC"] as Address,
     args: [address],
-    functionName: "s_IsSellerRegistred",
+    functionName: "checkIfSellerIsRegisteredOrNot",
   });
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function RootLayout({
       {!isConnected ? (
         <div className="flex-1 flex justify-center items-center">
           <button
-            className="bg-blue-500 text-white h-[50px] w-[250px] rounded-2xl hover:bg-blue-600"
+            className="bg-[#6E94EB] text-white h-[50px] w-[250px] rounded-2xl hover:bg-blue-500"
             onClick={connectWallet}
           >
             CONNECT WALLET
@@ -67,11 +68,11 @@ export default function RootLayout({
         <div className="flex-1 w-9/12">{children}</div>
       ) : (
         <div className="flex-1 flex flex-col justify-center items-center space-y-5">
-          <p className="text-2xl text-blue-500">
+          <p className="text-2xl text-[#6E94EB]">
             Wallet not registered as a Vendor
           </p>
           <Link href="/companies/register">
-            <div className="bg-blue-500 text-white h-[50px] w-[250px] rounded-2xl hover:bg-blue-600 text-3xl flex justify-center items-center">
+            <div className="bg-[#6E94EB] text-white h-[50px] w-[250px] rounded-2xl hover:bg-blue-500 text-3xl flex justify-center items-center">
               REGISTER
             </div>
           </Link>

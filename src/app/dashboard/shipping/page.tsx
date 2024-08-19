@@ -1,8 +1,8 @@
 "use client";
 
 import PrettyInput from "@/ui/PrettyInput";
-import { useState } from "react";
-import { useWriteContract } from "wagmi";
+import { useEffect, useState } from "react";
+import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import abi from "../../../../contract_abis/MarketPlace.json";
 import CONTRACT_ADDRESSES from "@/constants/Addresses.json";
 import { Address } from "viem";
@@ -22,14 +22,29 @@ export default function Shipping() {
     writeContract: updateShipping,
   } = useWriteContract();
 
-  const handleSubmit = () => {
+  const { address: accountAddress } = useAccount();
+
+  const { data: shippingAddress } = useReadContract({
+    abi: abi,
+    address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
+    functionName: "s_userHomeAddress",
+    args: [accountAddress],
+  }) as { data: bigint[] | undefined };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
     try {
       updateShipping({
         abi: abi,
         address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
         functionName: "setUserHomeAddress",
         args: [
-          `Address: ${address}; postalCode: ${postalCode}; city: ${city}; country: ${country}`,
+          JSON.stringify({
+            address: address,
+            postalCode: postalCode,
+            city: city,
+            country: country,
+          }),
         ],
       });
     } catch (error) {
@@ -37,9 +52,39 @@ export default function Shipping() {
     }
   };
 
+  function tryParseJSON(item: any) {
+    try {
+      return JSON.parse(item);
+    } catch (e) {
+      return item;
+    }
+  }
+
+  useEffect(() => {
+    if (shippingAddress) {
+      console.log(shippingAddress);
+      const item = tryParseJSON(shippingAddress);
+      if (item.address) {
+        setAddress(item.address);
+      }
+      if (item.postalCode) {
+        setPostalCode(item.postalCode);
+      }
+      if (item.city) {
+        setCity(item.city);
+      }
+      if (item.country) {
+        setCountry(item.country);
+      }
+    }
+  }, [shippingAddress]);
+
   return (
-    <form className="text-black flex-1 flex flex-col items-center px-16 py-10 justify-evenly bg-[#E4EBFA] w-10/12 h-[70vh] ml-3 rounded-3xl">
-      <div className="text-3xl h-[20%] flex justify-center items-center font-black">
+    <form
+      onSubmit={handleSubmit}
+      className="text-black flex-1 flex flex-col items-center px-16 py-10 justify-evenly bg-[#E4EBFA] w-10/12 h-[70vh] ml-3 rounded-3xl"
+    >
+      <div className="text-3xl h-[20%] flex justify-center items-center font-black text-[#6E94EB]">
         Shipping Address
       </div>
       <div className="text-xl h-[60%] flex flex-col justify-evenly items-center">
@@ -83,8 +128,8 @@ export default function Shipping() {
       <div className="h-[20%] flex justify-center items-center">
         <input
           type="submit"
-          value={"SUBMIT"}
-          className="cursor-pointer text-xl border-cyan-800 bg-cyan-300 border h-[40px] w-[140px] rounded-xl transition-colors duration-500 hover:bg-cyan-200"
+          value={shippingAddress ? "UPDATE" : "SUBMIT"}
+          className="cursor-pointer text-xl bg-[#6E94EB] h-[40px] w-[140px] rounded-xl transition-colors duration-500 hover:bg-blue-500"
         />
       </div>
     </form>

@@ -50,9 +50,9 @@ export default function Home() {
             EARN TOKENS FOR RUNNING!
           </p>
           <Image
-            src="/Marketplace.png"
+            src="/shopPreview2.png"
             alt="Marketplace preview"
-            width={500}
+            width={600}
             height={200}
           />
         </div>

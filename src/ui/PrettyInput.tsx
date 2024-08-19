@@ -46,6 +46,7 @@ export default function PrettyInput({
         }}
         onBlur={handleBlur}
         ref={inputRef}
+        value={input || ""}
         required
       />
       <label

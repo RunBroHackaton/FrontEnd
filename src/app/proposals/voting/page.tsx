@@ -74,9 +74,11 @@ export default function Proposals() {
     if (
       proposeDetails?.length > 0 &&
       addresses &&
-      proposalStatus &&
+      proposalStatus?.length > 0 &&
       proposalIds
     ) {
+      console.log(proposalStatus);
+      console.log(proposalIds);
       let newArray: any[] = [];
       proposeDetails.forEach((details: any, i: number) => {
         if (proposalStatus[i].result[2]) {

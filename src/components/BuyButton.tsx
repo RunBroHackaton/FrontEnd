@@ -18,6 +18,8 @@ export default function BuyButton({ item }: { item: any }) {
   } = useWriteContract();
 
   const handleBuy = () => {
+    console.log(item[0]);
+    console.log(item[4]);
     try {
       buyShoe({
         abi: abi,

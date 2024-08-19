@@ -49,19 +49,27 @@ export default function Header() {
       ) : (
         <>
           <User />
-          <div className="mt-2 h-[10vh] flex justify-center rounded-sm items-center bg-[#FFD449] drop-shadow-lg">
+          <div className="mt-2 h-[10vh] flex rounded-sm items-center bg-[#FFD449] drop-shadow-lg">
             <Image
               src="/RunBroLogo.png"
               alt="Run Bro Logo"
               width={180}
               height={180}
-              className="mr-[1%]"
+              className="ml-[5vw]"
             />
             <Link href="/">
-              <p className={`${lilita_one.className} text-6xl text-black`}>
-                RunBro !
+              <p
+                className={`${lilita_one.className} text-6xl text-black ml-[5vw]`}
+              >
+                RunBro!
               </p>
             </Link>
+            {/* <Image
+              src="/RunBRO_text_black.png"
+              alt="RUNBRO"
+              height={220}
+              width={220}
+            /> */}
             <NavBar />
           </div>
         </>

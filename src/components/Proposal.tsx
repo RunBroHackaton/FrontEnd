@@ -3,7 +3,7 @@
 import { useWriteContract } from "wagmi";
 import abi from "../../contract_abis/KYC.json";
 import CONTRACT_ADDRESSES from "../constants/Addresses.json";
-import { Abi, Address } from "viem";
+import { Address } from "viem";
 import TxPopup from "./TxPopup";
 import CircleLoading from "@/ui/CircleLoading";
 
@@ -36,12 +36,14 @@ export default function Proposal({
   } = useWriteContract();
 
   const handleVote = (side: boolean) => {
+    console.log(proposalId.toString());
+    console.log(side.toString());
     try {
       castVote({
         abi: abi,
         address: CONTRACT_ADDRESSES["KYC"] as Address,
-        functionName: "castVote",
-        args: [proposalId.toString(), side.toString()],
+        functionName: "vote",
+        args: [proposalId.toString(), side],
       });
     } catch (error) {
       console.log(error);
@@ -73,18 +75,24 @@ export default function Proposal({
           </p>
         </div>
         <div className="h-2/6 flex flex-row space-x-5 justify-center items-center w-full">
-          <button
-            className="bg-red-500 text-white px-3 py-1 rounded-xl transition-all duration-200 active:translate-y-1 active:scale-95"
-            onClick={() => handleVote(false)}
-          >
-            NO
-          </button>
-          <button
-            className="bg-green-500 text-white px-3 py-1 rounded-xl transition-all duration-200 active:translate-y-1 active:scale-95"
-            onClick={() => handleVote(true)}
-          >
-            YES
-          </button>
+          {votePending ? (
+            <div className="px-3 py-1 bg-blue-500 rounded-xl">Voting...</div>
+          ) : (
+            <>
+              <button
+                className="bg-red-500 text-white px-3 py-1 rounded-xl transition-all duration-200 active:translate-y-1 active:scale-95"
+                onClick={() => handleVote(false)}
+              >
+                NO
+              </button>
+              <button
+                className="bg-green-500 text-white px-3 py-1 rounded-xl transition-all duration-200 active:translate-y-1 active:scale-95"
+                onClick={() => handleVote(true)}
+              >
+                YES
+              </button>
+            </>
+          )}
         </div>
       </div>
       <TxPopup hash={voteHash} status={voteStatus} />

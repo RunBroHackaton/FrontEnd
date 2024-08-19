@@ -27,20 +27,8 @@ interface APIResponse {
   }>;
 }
 
-export default function FitnessData({ steps, setSteps }: any) {
+export default function FitnessData({ steps, setSteps, setTimestamp }: any) {
   const { data: session } = useSession();
-
-  const { data: startDayTimestamp } = useReadContract({
-    abi: abi,
-    address: CONTRACT_ADDRESSES["REWARDS"] as Address,
-    functionName: "getPreviousDayMidnightTimestamp",
-  });
-
-  const { data: endDayTimestamp } = useReadContract({
-    abi: abi,
-    address: CONTRACT_ADDRESSES["REWARDS"] as Address,
-    functionName: "getCurrentDayMidnightTimestamp",
-  });
 
   function parseStepsData(data: APIResponse): StepData[] {
     return data.bucket.map((bucket: any) => {
@@ -55,18 +43,31 @@ export default function FitnessData({ steps, setSteps }: any) {
     });
   }
 
-  useEffect(() => {
-    console.log(endDayTimestamp);
-    console.log(startDayTimestamp);
-  }, [endDayTimestamp, startDayTimestamp]);
+  function getPreviousMidnightTimestamps() {
+    // Get the current date in UTC
+    let now = new Date();
+
+    // Calculate the current 12:00 AM UTC (start of today)
+    let current12AM = new Date(
+      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
+    );
+
+    // Calculate the previous 12:00 AM UTC (start of yesterday)
+    let previous12AM = new Date(current12AM.getTime() - 24 * 60 * 60 * 1000);
+
+    // Return the timestamps in milliseconds
+    return {
+      current12AM: current12AM.getTime(),
+      previous12AM: previous12AM.getTime(),
+    };
+  }
 
   useEffect(() => {
     if (session?.accessToken) {
+      let timestamps = getPreviousMidnightTimestamps();
       const fetchStepsData = async () => {
-        console.log(session);
-        const now = new Date();
-        const endTimeMillis = now.getTime(); // Current time
-        const startTimeMillis = endTimeMillis - 24 * 60 * 60 * 1000; // 24 hours ago
+        const endTimeMillis = timestamps.current12AM;
+        const startTimeMillis = timestamps.previous12AM;
 
         try {
           const response = await fetch(
@@ -99,6 +100,7 @@ export default function FitnessData({ steps, setSteps }: any) {
           const data = await response.json();
           const parsedData = parseStepsData(data);
           console.log(parsedData);
+          setTimestamp(timestamps.previous12AM);
           setSteps(parsedData[0].stepsData);
         } catch (error) {
           console.error("Error fetching steps data:", error);

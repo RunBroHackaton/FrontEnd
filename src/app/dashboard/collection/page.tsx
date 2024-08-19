@@ -11,11 +11,41 @@ export default function Collection() {
   const [showModal, setShowModal] = useState(false);
   const [selectedShoe, setSelectedShoe] = useState("");
   const [steps, setSteps] = useState(0);
+  const [timestamp, setTimestamp] = useState();
 
   const { data: session } = useSession();
 
+  function formatTimestampToDate(timestamp: number) {
+    // Array of month names
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    // Create a Date object from the timestamp
+    let date = new Date(timestamp);
+
+    // Extract the day and month name
+    let day = date.getUTCDate();
+    let monthName = monthNames[date.getUTCMonth()];
+
+    // Return the formatted string
+    console.log(`${day} ${monthName}`);
+    return `${day} ${monthName}`;
+  }
+
   return (
-    <div className="flex flex-row items-center w-full justify-between pl-3 pr-16">
+    <div className="flex flex-row items-center justify-between pl-3 pr-16 w-11/12">
       <ShoeCollection setSelectedShoe={setSelectedShoe} />
       {selectedShoe ? (
         <div className="flex flex-col justify-center items-center rounded-full bg-[#D9D9D9] h-[400px] w-[400px]">
@@ -44,8 +74,15 @@ export default function Collection() {
             )}
           </div>
           <div className="text-black">
-            <p>Your Fitness Data from 1st May</p>
-            <FitnessData steps={steps} setSteps={setSteps} />
+            <p>
+              Your Fitness Data from{" "}
+              {timestamp ? formatTimestampToDate(timestamp) : ""}
+            </p>
+            <FitnessData
+              steps={steps}
+              setSteps={setSteps}
+              setTimestamp={setTimestamp}
+            />
           </div>
           <button
             className="bg-[#E4EBFA] border-[8px] border-[#FF007A] rounded-3xl text-black px-4 py-1 text-2xl"

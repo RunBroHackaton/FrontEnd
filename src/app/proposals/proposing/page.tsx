@@ -63,7 +63,7 @@ export default function Proposals() {
     if (proposeDetails?.length > 0 && addresses && proposedAddresses) {
       let newArray: any[] = [];
       proposeDetails.forEach((details: any, i: number) => {
-        if (i > proposedAddresses.length) {
+        if (i >= proposedAddresses.length) {
           let item = tryParseJSON(details.result);
           if (item.Brand && item.Description) {
             let parsedDetails = JSON.parse(details.result);

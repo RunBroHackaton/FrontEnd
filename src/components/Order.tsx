@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Order({ item }: any) {
   return (
-    <div className="flex flex-row h-[100px] w-full">
-      <div className="relative h-full">
+    <div className="flex flex-row h-[120px] w-full text-black border-black border-y-2 items-center justify-around">
+      <div className="relative h-[100px] w-[100px]">
         <Image
           loader={() =>
             item[3].includes(`${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/`)
@@ -30,19 +30,21 @@ export default function Order({ item }: any) {
         <p>{`Lister: ${item[6].toString()}`}</p>
       </div>
       <div>
-        <div className="flex flex-row space-x-2">
-          <p>{`Confirmation by buyer: ${item[10].toString()}`}</p>
+        <div className="flex flex-row space-x-2 items-center">
           <div
-            className={`h-[30px] w-[30px] rounded-full ${item[10].toString() == "true" ? "bg-green-500" : "bg-red-500"}`}
+            className={`h-[20px] w-[20px] rounded-full ${item[10].toString() == "true" ? "bg-green-500" : "bg-red-500"}`}
           ></div>
+          <p>{`Confirmed by buyer`}</p>
         </div>
-        <div className="flex flex-row space-x-2">
-          <p>{`Confirmation by seller: ${item[11].toString()}`}</p>
+        <div className="flex flex-row space-x-2 items-center">
           <div
-            className={`h-[30px] w-[30px] rounded-full ${item[11].toString() == "true" ? "bg-green-500" : "bg-red-500"}`}
+            className={`h-[20px] w-[20px] rounded-full ${item[11].toString() == "true" ? "bg-green-500" : "bg-red-500"}`}
           ></div>
+          <p>{`Confirmed by seller`}</p>
         </div>
-        <button className="">CONFIRM DELIVERY</button>
+        <button className="bg-green-500 h-[25px] w-[150px] rounded-3xl text-sm mt-2">
+          CONFIRM DELIVERY
+        </button>
       </div>
     </div>
   );

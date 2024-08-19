@@ -79,7 +79,13 @@ export default function ProposalRequest({
               onClick={() => handlePropose()}
               disabled={proposePending}
             >
-              {proposePending ? "Proposing..." : "Propose"}
+              {proposePending ? (
+                <div className="flex justify-center items-center h-6 w-full">
+                  <CircleLoading />
+                </div>
+              ) : (
+                "Propose"
+              )}
             </button>
           ) : (
             <p className="text-gray-400">In queue</p>

@@ -47,22 +47,17 @@ export default function RedeemModal({
     writeContract: confirm,
   } = useWriteContract();
 
-  const { data: distributionTimestamp } = useReadContract({
-    abi: abiSteps,
-    address: CONTRACT_ADDRESSES["STEPSAPI"] as Address,
-    functionName: "s_distributionTimeStamp",
-  });
-
   const handleClick = () => {
     if (!fetchedSteps) {
+      console.log("Fetching steps!");
       try {
         console.log("redeeming steps...");
         console.log(session?.accessToken);
         redeemSteps({
-          abi: abi,
-          address: CONTRACT_ADDRESSES["REWARDS"] as Address,
-          functionName: "sendRequestToFetchSteps",
-          args: [session?.accessToken],
+          abi: abiSteps,
+          address: CONTRACT_ADDRESSES["STEPSAPI"] as Address,
+          functionName: "sendRequest",
+          args: [[""], session?.accessToken],
         });
       } catch (error) {
         console.log(error);
@@ -82,12 +77,24 @@ export default function RedeemModal({
     }
   };
 
-  const getTimeLeft = (day: any) => {
-    const currentTimeStamp = Math.round(Date.now() / 1000);
-    const time = Number(day) - currentTimeStamp;
-    const hoursLeft = Math.floor(time / 60 / 60);
-    const minutesLeft = Math.floor(time / 60) % 24;
-    return `${hoursLeft} H ${minutesLeft} min`;
+  const getTimeLeft = () => {
+    // Get the current date and time in UTC
+    let now = new Date();
+
+    // Calculate the next 12:00 AM UTC (start of the next day)
+    let next12AM = new Date(
+      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1)
+    );
+
+    // Calculate the difference in milliseconds between now and the next 12:00 AM UTC
+    let timeDifference = next12AM.getTime() - now.getTime();
+
+    // Convert the time difference to minutes and hours
+    let minutes = Math.floor((timeDifference / 1000 / 60) % 60);
+    let hours = Math.floor(timeDifference / (1000 * 60 * 60));
+
+    // Return the remaining time in hours and minutes
+    return `${hours} hours and ${minutes} minutes`;
   };
 
   useEffect(() => {
@@ -114,11 +121,7 @@ export default function RedeemModal({
             </p>
             <div>
               <p className="text-2xl text-center">Time Left!</p>
-              <p className="text-2xl">
-                {distributionTimestamp
-                  ? getTimeLeft(distributionTimestamp)
-                  : ""}
-              </p>
+              <p className="text-2xl">{getTimeLeft()}</p>
             </div>
             <p className="text-2xl">
               Factor: {item[5] ? Number(item[5]) / 10 ** 18 : "0"}

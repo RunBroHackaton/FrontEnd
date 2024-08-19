@@ -38,10 +38,10 @@ export default function ShoeCollection({ setSelectedShoe }: any) {
       let shoeArray = shoes.map((shoe: any) => {
         return shoe.result;
       });
-      let filteredArray = shoeArray.filter((shoe: any) => {
-        return shoe[9] == true;
-      });
-      setCollection(filteredArray);
+      // let filteredArray = shoeArray.filter((shoe: any) => {
+      //   return shoe[9] == true;
+      // });
+      setCollection(shoeArray);
     }
   }, [shoes]);
 

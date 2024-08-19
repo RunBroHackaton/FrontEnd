@@ -21,7 +21,11 @@
     "type": "function",
     "name": "func_userStepsData",
     "inputs": [
-      { "name": "_account", "type": "address", "internalType": "address" }
+      {
+        "name": "_account",
+        "type": "address",
+        "internalType": "address"
+      }
     ],
     "outputs": [
       {
@@ -34,7 +38,11 @@
             "type": "address",
             "internalType": "address"
           },
-          { "name": "dataType", "type": "string", "internalType": "string" },
+          {
+            "name": "dataType",
+            "type": "string",
+            "internalType": "string"
+          },
           {
             "name": "stepsCount",
             "type": "uint256",
@@ -60,7 +68,11 @@
             "type": "address",
             "internalType": "address"
           },
-          { "name": "dataType", "type": "string", "internalType": "string" },
+          {
+            "name": "dataType",
+            "type": "string",
+            "internalType": "string"
+          },
           {
             "name": "stepsCount",
             "type": "uint256",
@@ -86,7 +98,11 @@
             "type": "address",
             "internalType": "address"
           },
-          { "name": "dataType", "type": "string", "internalType": "string" },
+          {
+            "name": "dataType",
+            "type": "string",
+            "internalType": "string"
+          },
           {
             "name": "stepsCount",
             "type": "uint256",
@@ -101,21 +117,37 @@
     "type": "function",
     "name": "getCurrentDayMidnightTimestamp",
     "inputs": [],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "getLastResponse",
     "inputs": [],
-    "outputs": [{ "name": "", "type": "bytes", "internalType": "bytes" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "getLatestUserStepsData",
     "inputs": [
-      { "name": "user", "type": "address", "internalType": "address" }
+      {
+        "name": "user",
+        "type": "address",
+        "internalType": "address"
+      }
     ],
     "outputs": [
       {
@@ -128,7 +160,11 @@
             "type": "address",
             "internalType": "address"
           },
-          { "name": "dataType", "type": "string", "internalType": "string" },
+          {
+            "name": "dataType",
+            "type": "string",
+            "internalType": "string"
+          },
           {
             "name": "stepsCount",
             "type": "uint256",
@@ -143,25 +179,53 @@
     "type": "function",
     "name": "getNext6PM",
     "inputs": [
-      { "name": "timestamp", "type": "uint256", "internalType": "uint256" }
+      {
+        "name": "timestamp",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
     ],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
     "stateMutability": "pure"
   },
   {
     "type": "function",
     "name": "getPreviousDayMidnightTimestamp",
     "inputs": [],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "handleOracleFulfillment",
     "inputs": [
-      { "name": "requestId", "type": "bytes32", "internalType": "bytes32" },
-      { "name": "response", "type": "bytes", "internalType": "bytes" },
-      { "name": "err", "type": "bytes", "internalType": "bytes" }
+      {
+        "name": "requestId",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "response",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "err",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
     ],
     "outputs": [],
     "stateMutability": "nonpayable"
@@ -169,89 +233,193 @@
   {
     "type": "function",
     "name": "hasUserFetchedData",
-    "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
-    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+    "inputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "owner",
     "inputs": [],
-    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "requestIdToAddress",
-    "inputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
-    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "inputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "s_IsUserAlreadyLogin",
     "inputs": [
-      { "name": "", "type": "address", "internalType": "address" },
-      { "name": "", "type": "uint256", "internalType": "uint256" }
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
     ],
-    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "s_contractCreationTime",
     "inputs": [],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "s_distributionTimeStamp",
     "inputs": [],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "s_lastError",
     "inputs": [],
-    "outputs": [{ "name": "", "type": "bytes", "internalType": "bytes" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "s_lastRequestId",
     "inputs": [],
-    "outputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "s_lastResponse",
     "inputs": [],
-    "outputs": [{ "name": "", "type": "bytes", "internalType": "bytes" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "sendRequest",
     "inputs": [
-      { "name": "args", "type": "string[]", "internalType": "string[]" },
-      { "name": "authToken", "type": "string", "internalType": "string" }
+      {
+        "name": "args",
+        "type": "string[]",
+        "internalType": "string[]"
+      },
+      {
+        "name": "authToken",
+        "type": "string",
+        "internalType": "string"
+      }
     ],
     "outputs": [
-      { "name": "requestId", "type": "bytes32", "internalType": "bytes32" }
+      {
+        "name": "requestId",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
     ],
     "stateMutability": "nonpayable"
   },
   {
     "type": "function",
     "name": "stepsDataRecords",
-    "inputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
     "outputs": [
-      { "name": "requester", "type": "address", "internalType": "address" },
-      { "name": "dataType", "type": "string", "internalType": "string" },
-      { "name": "stepsCount", "type": "uint256", "internalType": "uint256" }
+      {
+        "name": "requester",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "dataType",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "stepsCount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
     ],
     "stateMutability": "view"
   },
@@ -259,24 +427,48 @@
     "type": "function",
     "name": "totalStepsByAllUsersInSlotOnPreviousDay",
     "inputs": [
-      { "name": "", "type": "uint256", "internalType": "uint256" },
-      { "name": "", "type": "address", "internalType": "address" }
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
     ],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "totalStepsByAllUsersOnPreviousDay",
     "inputs": [],
-    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
     "stateMutability": "view"
   },
   {
     "type": "function",
     "name": "transferOwnership",
     "inputs": [
-      { "name": "to", "type": "address", "internalType": "address" }
+      {
+        "name": "to",
+        "type": "address",
+        "internalType": "address"
+      }
     ],
     "outputs": [],
     "stateMutability": "nonpayable"
@@ -291,11 +483,29 @@
   {
     "type": "function",
     "name": "userStepsData",
-    "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "inputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
     "outputs": [
-      { "name": "requester", "type": "address", "internalType": "address" },
-      { "name": "dataType", "type": "string", "internalType": "string" },
-      { "name": "stepsCount", "type": "uint256", "internalType": "uint256" }
+      {
+        "name": "requester",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "dataType",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "stepsCount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
     ],
     "stateMutability": "view"
   },
@@ -432,15 +642,35 @@
     ],
     "anonymous": false
   },
-  { "type": "error", "name": "EmptyArgs", "inputs": [] },
-  { "type": "error", "name": "EmptySource", "inputs": [] },
-  { "type": "error", "name": "NoInlineSecrets", "inputs": [] },
-  { "type": "error", "name": "OnlyRouterCanFulfill", "inputs": [] },
+  {
+    "type": "error",
+    "name": "EmptyArgs",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EmptySource",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NoInlineSecrets",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OnlyRouterCanFulfill",
+    "inputs": []
+  },
   {
     "type": "error",
     "name": "UnexpectedRequestID",
     "inputs": [
-      { "name": "requestId", "type": "bytes32", "internalType": "bytes32" }
+      {
+        "name": "requestId",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
     ]
   }
 ]
