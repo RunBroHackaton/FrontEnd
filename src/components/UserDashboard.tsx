@@ -59,12 +59,12 @@ export default function UserDashboard() {
           <button className="actionButton">Check rewards</button>
         </Link>
       </div>
-      <RedeemModal
+      {/* <RedeemModal
         showModal={showModal}
         setShowModal={setShowModal}
         item={selectedShoe}
         steps={steps}
-      />
+      /> */}
     </div>
   );
 }
