@@ -98,6 +98,8 @@ export default function FitnessData({ steps, setSteps, setTimestamp }: any) {
           }
 
           const data = await response.json();
+          console.log("Session token:", session.accessToken);
+          console.log("Response:", data);
           const parsedData = parseStepsData(data);
           console.log(parsedData);
           setTimestamp(timestamps.previous12AM);
