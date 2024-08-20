@@ -16,6 +16,7 @@ import {
   Asap,
   Concert_One,
   Acme,
+  Archivo_Black,
 } from "next/font/google";
 
 export const roboto = Roboto({
@@ -102,3 +103,7 @@ export const signika = Signika_Negative({ weight: "400", subsets: ["latin"] });
 export const inter = Inter({ subsets: ["latin"] });
 
 // RunBro! - Fira Sans, Anton, Lilita One, Poetsen One, Luckiest Guy, Titan one
+export const archivo_black = Archivo_Black({
+  weight: "400",
+  subsets: ["latin"],
+});

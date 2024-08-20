@@ -100,7 +100,9 @@ export default function Listings() {
             ))}
           </>
         ) : (
-          <p className="mx-auto my-auto text-xl">No shoes available!</p>
+          <p className="absolute inset-0 flex justify-center items-center bg-white text-black text-center">
+            No shoes available!
+          </p>
         )
       ) : (
         <div className="absolute inset-0 flex justify-center items-center bg-white">

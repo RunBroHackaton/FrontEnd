@@ -110,7 +110,9 @@ export default function Rewards() {
             </div>
             <div className="text-black text-lg text-center">
               <p>REWARDS AVAILABLE TO CLAIM:</p>
-              <p>{rewards ? Number(rewards) / 10 ** 18 : "0"} WETH</p>
+              <p>
+                {rewards ? (Number(rewards) / 10 ** 18).toFixed(5) : "0"} WETH
+              </p>
             </div>
             <button
               className="bg-[#E4EBFA] border-[8px] border-[#FF007A] rounded-3xl text-black w-[250px] h-[55px] text-2xl"

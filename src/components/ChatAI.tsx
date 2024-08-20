@@ -12,7 +12,10 @@ export default function ChatAI() {
         <></>
       ) : (
         <div className="absolute bottom-[5%] right-[3%] flex flex-col justify-center items-center">
-          <Link href="https://3xethical-runbro.personal.ai/messaging/profile">
+          <Link
+            href="https://3xethical-runbro.personal.ai/messaging/profile"
+            target="_blank"
+          >
             <Image src="/RB_AI.png" height={90} width={90} alt="our own ai" />
           </Link>
           <p className="text-base text-black w-[100px]">CHAT WITH RUNBRO AI</p>

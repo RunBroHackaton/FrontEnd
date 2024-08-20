@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import User from "./User";
-import { lilita_one } from "@/ui/Fonts";
+import { archivo_black, lilita_one } from "@/ui/Fonts";
 import Image from "next/image";
 import NavBar from "./NavBar";
 import { usePathname } from "next/navigation";
@@ -29,7 +29,7 @@ export default function Header() {
           </div>
           <div className="mt-2 h-[10vh] border-y-[1vh] border-black flex rounded-sm items-center bg-[#EA5B46] text-black drop-shadow-lg">
             <p
-              className={`${lilita_one.className} text-6xl text-black ml-[10vw]`}
+              className={`${archivo_black.className} text-6xl text-black ml-[10vw]`}
             >
               <Link href="/">RunBro!</Link>
             </p>
@@ -59,7 +59,7 @@ export default function Header() {
             />
             <Link href="/">
               <p
-                className={`${lilita_one.className} text-6xl text-black ml-[5vw]`}
+                className={`${archivo_black.className} text-6xl text-black ml-[5vw]`}
               >
                 RunBro!
               </p>
