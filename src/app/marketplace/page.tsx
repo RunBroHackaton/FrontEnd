@@ -1,17 +1,8 @@
-import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
 import ItemList from "@/components/ItemList";
 import Filter from "@/components/Filter";
 import Image from "next/image";
 
 export default async function Marketplace() {
-  const session = await getServerSession();
-
-  if (!session || !session.user) {
-    redirect("/");
-  } else {
-    console.log(session);
-  }
 
   return (
     <div className="flex-1 flex flex-col items-center px-16 py-10 justify-evenly">

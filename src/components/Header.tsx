@@ -28,12 +28,19 @@ export default function Header() {
             <User />
           </div>
           <div className="mt-2 h-[10vh] border-y-[1vh] border-black flex rounded-sm items-center bg-[#EA5B46] text-black drop-shadow-lg">
-            <p
+            {/* <p
               className={`${archivo_black.className} text-6xl text-black ml-[10vw]`}
             >
               <Link href="/">RunBro!</Link>
-            </p>
-
+            </p> */}
+            <Link href="/" className="ml-[10vw]">
+              <Image
+                src="/RunBRO_text_logo_600x300.png"
+                alt="RUNBRO"
+                height={175}
+                width={175}
+              />
+            </Link>
             <Image
               src="/RunBroLogo.png"
               alt="Run Bro Logo"
@@ -57,19 +64,21 @@ export default function Header() {
               height={180}
               className="ml-[5vw]"
             />
-            <Link href="/">
+            {/* <Link href="/">
               <p
                 className={`${archivo_black.className} text-6xl text-black ml-[5vw]`}
               >
                 RunBro!
               </p>
+            </Link> */}
+            <Link href="/" className="ml-[1vw]">
+              <Image
+                src="/RunBRO_text_logo_600x300.png"
+                alt="RUNBRO"
+                height={175}
+                width={175}
+              />
             </Link>
-            {/* <Image
-              src="/RunBRO_text_black.png"
-              alt="RUNBRO"
-              height={220}
-              width={220}
-            /> */}
             <NavBar />
           </div>
         </>

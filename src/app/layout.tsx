@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import WagmiProvider from "./wagmiProvider";
 import SessionProvider from "./sessionProvider";
-import { lilita_one, nunito, concert, inter } from "@/ui/Fonts";
+import { inter } from "@/ui/Fonts";
 import Background from "@/components/Background";
 import ChatAI from "@/components/ChatAI";
 

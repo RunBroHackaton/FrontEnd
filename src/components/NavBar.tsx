@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 export default function NavBar() {
   const path = usePathname();
   return (
-    <div className="flex flex-row text-3xl text-black space-x-[4vw] ml-[15vw]">
+    <div className="flex flex-row text-3xl text-black space-x-[4vw] ml-[20vw]">
       <Link href="https://www.runbro.net" target="_blank">
         <p className={`${path.includes("/about") ? "font-bold" : ""}`}>ABOUT</p>
       </Link>
