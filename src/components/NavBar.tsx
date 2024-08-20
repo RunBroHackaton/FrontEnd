@@ -8,7 +8,7 @@ export default function NavBar() {
   const path = usePathname();
   return (
     <div className="flex flex-row text-3xl text-black space-x-[4vw] ml-[15vw]">
-      <Link href="/about">
+      <Link href="https://www.runbro.net">
         <p className={`${path.includes("/about") ? "font-bold" : ""}`}>ABOUT</p>
       </Link>
       <Link href="/marketplace">

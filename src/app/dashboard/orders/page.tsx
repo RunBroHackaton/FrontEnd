@@ -41,7 +41,7 @@ export default function Orders() {
   return (
     <div className="flex-1 flex flex-col items-center px-6 py-10 justify-evenly bg-[#E4EBFA] w-10/12 h-[70vh] ml-3 rounded-3xl">
       {orders.length > 0 ? (
-        orders.map((shoe, i) => <Order item={shoe} key={i} />)
+        orders.map((shoe, i) => <Order item={shoe} seller={false} key={i} />)
       ) : (
         <p className="mx-auto my-auto text-black text-2xl">No orders yet!</p>
       )}

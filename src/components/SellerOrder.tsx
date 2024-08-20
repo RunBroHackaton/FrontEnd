@@ -8,7 +8,7 @@ export default function Order({
   seller: boolean;
 }) {
   return (
-    <div className="flex flex-row h-[120px] w-full text-black border-[#6E94EB] border-y-2 items-center justify-around">
+    <div className="flex flex-row h-[120px] w-full text-black border-black border-y-2 items-center justify-around">
       <div className="relative h-[100px] w-[100px]">
         <Image
           loader={() =>
@@ -33,7 +33,7 @@ export default function Order({
       <div>
         <p>{`Price: ${Number(item[4]) / 10 ** 18}`}</p>
         <p>{`Power: ${Number(item[5]) / 10 ** 18}`}</p>
-        <p>{`Lister: ${item[7].substring(0, 10)}...${item[7].substring(item[7].length - 5)}`}</p>
+        <p>{`Lister: ${item[6].toString()}`}</p>
       </div>
       <div>
         <div className="flex flex-row space-x-2 items-center">
@@ -48,9 +48,8 @@ export default function Order({
           ></div>
           <p>{`Confirmed by seller`}</p>
         </div>
-        {}
         <button className="bg-green-500 h-[25px] w-[150px] rounded-3xl text-sm mt-2">
-          {seller ? "CONFIRM SHIPPING" : "CONFIRM DELIVERY"}
+          CONFIRM DELIVERY
         </button>
       </div>
     </div>
