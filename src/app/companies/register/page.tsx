@@ -18,10 +18,10 @@ export default function Companies() {
   const { address } = useAccount();
 
   const { data: isRegistered } = useReadContract({
-    abi: abi,
-    address: CONTRACT_ADDRESSES["MARKETPLACE"] as Address,
+    abi: kycAbi,
+    address: CONTRACT_ADDRESSES["KYC"] as Address,
     args: [address],
-    functionName: "s_IsSellerRegistred",
+    functionName: "checkIfSellerIsRegisteredOrNot",
   });
 
   const {
@@ -46,23 +46,13 @@ export default function Companies() {
     }
   };
 
-  useEffect(() => {
-    console.log("is registered", isRegistered);
-    if (isRegistered) {
-      console.log("Routing to list...");
-      router.push("/companies/list");
-    }
-  }, [isRegistered]);
-
   return (
     <>
       {isRegistered ? (
-        <div className="flex-1 flex flex-col items-center px-16 justify-evenly border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%] w-10/12">
-          <p className="text-2xl text-blue-500">Wallet already registered!</p>
-        </div>
+        <p className="text-3xl text-blue-500">Wallet already registered!</p>
       ) : (
         <form
-          className="flex-1 flex flex-col items-center px-16 justify-evenly border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%] space-y-8 w-10/12"
+          className="flex-1 flex flex-col items-center px-16 justify-evenly rounded-md h-[70vh] mx-[2%] space-y-8 w-full"
           onSubmit={handleSubmit}
         >
           <p className="text-blue-500 text-3xl font-black">

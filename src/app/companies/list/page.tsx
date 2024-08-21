@@ -52,73 +52,71 @@ export default function List() {
 
   return (
     <>
-      <div className="flex-1 flex flex-col items-center px-16 justify-evenly border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%] w-10/12">
-        <div className="flex flex-row justify-evenly w-full">
-          <ImageUpload cid={cid} setCid={setCid} />
-          <div className="flex flex-col items-center justify-evenly">
-            <PrettyInput
-              type="text"
-              name="Brand"
-              label="Shoe Brand"
-              input={brand}
-              setInput={setBrand}
-              min={0}
-              max={0}
-            />
-            <PrettyInput
-              type="text"
-              name="Name"
-              label="Shoe Name"
-              input={name}
-              setInput={setName}
-              min={0}
-              max={0}
-            />
-            <PrettyInput
-              type="number"
-              name="Price"
-              label="Product Price"
-              input={price}
-              setInput={setPrice}
-              min={0}
-              max={0}
-            />
-            <PrettyInput
-              type="number"
-              name="factor"
-              label="Reward factor"
-              input={factor}
-              setInput={setFactor}
-              min={0}
-              max={0}
-            />
-            <PrettyInput
-              type="number"
-              name="Quantity"
-              label="Shoe Quantity"
-              input={quantity}
-              setInput={setQuantity}
-              min={1}
-              max={0}
-            />
-          </div>
+      <div className="flex flex-row justify-evenly w-full">
+        <ImageUpload cid={cid} setCid={setCid} />
+        <div className="flex flex-col items-center justify-evenly">
+          <PrettyInput
+            type="text"
+            name="Brand"
+            label="Shoe Brand"
+            input={brand}
+            setInput={setBrand}
+            min={0}
+            max={0}
+          />
+          <PrettyInput
+            type="text"
+            name="Name"
+            label="Shoe Name"
+            input={name}
+            setInput={setName}
+            min={0}
+            max={0}
+          />
+          <PrettyInput
+            type="number"
+            name="Price"
+            label="Product Price"
+            input={price}
+            setInput={setPrice}
+            min={0}
+            max={0}
+          />
+          <PrettyInput
+            type="number"
+            name="factor"
+            label="Reward factor"
+            input={factor}
+            setInput={setFactor}
+            min={0}
+            max={0}
+          />
+          <PrettyInput
+            type="number"
+            name="Quantity"
+            label="Shoe Quantity"
+            input={quantity}
+            setInput={setQuantity}
+            min={1}
+            max={0}
+          />
         </div>
-        <p className="mt-7 text-black">
-          Platform fee: {(price / 10 + factor / 10) * quantity}ETH
-        </p>
-        <button
-          className="bg-[#EA5B46] text-white font-bold text-3xl w-[150px] h-[40px] rounded-3xl"
-          onClick={handleClick}
-        >
-          {pendingList ? (
-            <div className="flex justify-center items-center h-6 w-full">
-              <CircleLoading />
-            </div>
-          ) : (
-            "LIST"
-          )}
-        </button>
       </div>
+      <p className="mt-7 text-black">
+        Platform fee: {(price / 10 + factor / 10) * quantity}ETH
+      </p>
+      <button
+        className="bg-[#EA5B46] text-white font-bold text-3xl w-[150px] h-[40px] rounded-3xl"
+        onClick={handleClick}
+      >
+        {pendingList ? (
+          <div className="flex justify-center items-center h-6 w-full">
+            <CircleLoading />
+          </div>
+        ) : (
+          "LIST"
+        )}
+      </button>
       <TxPopup hash={listHash} status={listStatus} />
     </>
   );

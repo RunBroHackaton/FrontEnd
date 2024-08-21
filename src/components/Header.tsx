@@ -37,8 +37,8 @@ export default function Header() {
               <Image
                 src="/RunBRO_text_logo_600x300.png"
                 alt="RUNBRO"
-                height={175}
-                width={175}
+                height={135}
+                width={135}
               />
             </Link>
             <Image
@@ -75,8 +75,8 @@ export default function Header() {
               <Image
                 src="/RunBRO_text_logo_600x300.png"
                 alt="RUNBRO"
-                height={175}
-                width={175}
+                height={155}
+                width={155}
               />
             </Link>
             <NavBar />

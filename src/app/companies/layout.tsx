@@ -56,7 +56,7 @@ export default function RootLayout({
     <div className="flex-1 flex flex-row items-center">
       <SellerNavBar />
       {!isConnected ? (
-        <div className="flex-1 flex justify-center items-center">
+        <div className="flex flex-col items-center px-16 justify-evenly border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%] w-[61%]">
           <button
             className="bg-[#6E94EB] text-white h-[50px] w-[250px] rounded-2xl hover:bg-blue-500"
             onClick={connectWallet}
@@ -65,9 +65,11 @@ export default function RootLayout({
           </button>
         </div>
       ) : isRegistered || path.includes("register") ? (
-        <div className="flex-1 w-9/12">{children}</div>
+        <div className="flex flex-col items-center justify-evenly border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%] w-[61%]">
+          {children}
+        </div>
       ) : (
-        <div className="flex-1 flex flex-col justify-center items-center space-y-5">
+        <div className="flex flex-col justify-center items-center space-y-5 border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%] w-[61%]">
           <p className="text-2xl text-[#6E94EB]">
             Wallet not registered as a Vendor
           </p>

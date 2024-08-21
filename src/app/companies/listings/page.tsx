@@ -91,7 +91,7 @@ export default function Listings() {
   }, []);
 
   return (
-    <div className="flex-1 items-center px-4 border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%] w-10/12 grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4 py-[2%] overflow-y-scroll relative">
+    <div className="flex-1 w-full items-center px-4 rounded-md h-[70vh] mx-[2%] grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4 py-[2%] overflow-y-scroll relative">
       {calledContract ? (
         shoeList && shoeList?.length > 0 ? (
           <>
@@ -100,12 +100,12 @@ export default function Listings() {
             ))}
           </>
         ) : (
-          <p className="absolute inset-0 flex justify-center items-center bg-white text-black text-center">
+          <p className="absolute inset-0 flex justify-center items-center text-black text-center text-2xl">
             No shoes available!
           </p>
         )
       ) : (
-        <div className="absolute inset-0 flex justify-center items-center bg-white">
+        <div className="absolute inset-0 flex justify-center items-center">
           <div className="text-center">
             <div className="flex justify-center items-center h-8 w-full">
               <CircleLoading />

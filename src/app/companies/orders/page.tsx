@@ -41,12 +41,14 @@ export default function SellerOrders() {
   }, [shoes]);
 
   return (
-    <div className="flex-1 flex items-center justify-evenly border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%] w-10/12">
+    // <div className="flex-1 flex items-center justify-evenly border-[#6E94EB] border-[5px] rounded-md h-[70vh] mx-[2%] w-10/12">
+    <>
       {orders.length > 0 ? (
         orders.map((shoe, i) => <Order item={shoe} seller={true} key={i} />)
       ) : (
         <p className="mx-auto my-auto text-black text-2xl">No orders yet!</p>
       )}
-    </div>
+    </>
+    // </div>
   );
 }
